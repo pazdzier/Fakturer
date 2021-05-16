@@ -1,3 +1,4 @@
+import logging
 from contextlib import contextmanager
 from datetime import datetime
 from sqlalchemy import (
@@ -12,6 +13,8 @@ from sqlalchemy import (
     Boolean,
 )
 from sqlalchemy.orm import registry, relationship, Session
+from sqlalchemy.ext.hybrid import hybrid_property
+from utils.string_formatters import nip_format, account_format, zip_code_format
 
 engine = create_engine("sqlite+pysqlite:///data.db")
 mapper_registry = registry()
@@ -27,11 +30,34 @@ class User:
     company_name = Column(String)
     street = Column(String)
     city = Column(String)
-    zip_code = Column(String)
-    nip = Column(String)  # should be int
-    account_number = Column(String)  # should be int
-    contractors = relationship("Contractor", back_populates="user")
+    _zip_code = Column(String)
+    _nip = Column(String)
+    _account_number = Column(String)  # should be int
     bills = relationship("Bill", back_populates="user")
+
+    @hybrid_property
+    def nip(self):
+        return nip_format(self._nip)
+
+    @nip.setter
+    def nip(self, value):
+        self._nip = value
+
+    @hybrid_property
+    def zip_code(self):
+        return zip_code_format(self._zip_code)
+
+    @zip_code.setter
+    def zip_code(self, value):
+        self._zip_code = value
+
+    @hybrid_property
+    def account_number(self):
+        return account_format(self._account_number)
+
+    @account_number.setter
+    def account_number(self, value):
+        self._account_number = value
 
     def __repr__(self):
         return f"User: {self.first_name} {self.last_name}"
@@ -45,13 +71,27 @@ class Contractor:
     default = Column(Boolean, default=True, nullable=False)
     deleted = Column(Boolean, default=False, nullable=False)
     company_name = Column(String, nullable=False)
-    nip = Column(Integer, nullable=False)
+    _nip = Column(String, nullable=False)
     street = Column(String, nullable=False)
     city = Column(String, nullable=False)
-    zip_code = Column(String, nullable=False)
-    user = relationship("User", back_populates="contractors")
-    user_id = Column(ForeignKey("user.id"))
+    _zip_code = Column(String, nullable=False)
     bills = relationship("Bill", back_populates="contractor")
+
+    @hybrid_property
+    def nip(self):
+        return nip_format(self._nip)
+
+    @nip.setter
+    def nip(self, value):
+        self._nip = value
+
+    @hybrid_property
+    def zip_code(self):
+        return zip_code_format(self._zip_code)
+
+    @zip_code.setter
+    def zip_code(self, value):
+        self._zip_code = value
 
     def __str__(self):
         return f"{self.company_name}"
@@ -65,8 +105,11 @@ class ServiceAssociation:
     __tablename__ = 'association'
     service_id = Column(Integer, ForeignKey('service.id'), primary_key=True)
     bill_id = Column(Integer, ForeignKey('bill.id'), primary_key=True)
-    extra_data = Column(String(50))
     service = relationship("Service")
+    partial_amount = Column(Numeric(precision=2))
+    full_amount = Column(Numeric(precision=2))
+    volume = Column(Integer)
+    measure = Column(String(4))
 
 
 @mapper_registry.mapped
@@ -76,6 +119,10 @@ class Service:
     id = Column(Integer, primary_key=True)
     name = Column(String)
     amount = Column(Numeric(precision=2))
+    deleted = Column(Boolean, default=False, nullable=False)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 @mapper_registry.mapped
@@ -86,7 +133,6 @@ class Bill:
     deleted = Column(Boolean, default=False, nullable=False)
     name = Column(String)
     amount = Column(Numeric(precision=2))
-    signature = Column(String)
     payment_date = Column(Date)
     created = Column(DateTime, default=datetime.now())
     user = relationship("User", back_populates="bills")
@@ -94,6 +140,9 @@ class Bill:
     contractor = relationship("Contractor", back_populates="bills")
     contractor_id = Column(ForeignKey("contractor.id"))
     services = relationship("ServiceAssociation")
+
+
+
 
     def __repr__(self):
         return f"{self.signature} - {self.amount}"
@@ -108,9 +157,9 @@ def session_manager(engine, mapper_registry):
     try:
         yield session
         session.commit()
-    except Exception as e:
+    except Exception as exception:
         session.rollback()
+        logging.error(exception, exc_info=True)
         raise
     finally:
         session.close()
-
