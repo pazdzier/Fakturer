@@ -3,16 +3,23 @@
     Moduł zawiera funkcje generujące fake'owe dane do db na potrzeby developmentu.
 
 """
-import re
+from datetime import date
 from random import randrange
-from database.models import session_manager, engine, mapper_registry, Contractor, User
+from database.models import (
+    session_manager,
+    engine,
+    mapper_registry,
+    Contractor,
+    User,
+    Service,
+)
 from faker import Faker
 
 FAKER = Faker("pl_PL")
 
 
 def fake_user():
-    """ Tworzy w db fejkowego użytkownika """
+    """Tworzy w db fejkowego użytkownika"""
 
     with session_manager(engine, mapper_registry) as session:
         user = User(
@@ -26,12 +33,12 @@ def fake_user():
             account_number=f"{randrange(1, 10**26)}",
         )
         session.add(user)
-        print(f'Użytkownik: {user.first_name} {user.last_name} został dodany')
+        print(f"Użytkownik: {user.first_name} {user.last_name} został dodany")
         session.commit()
 
 
 def fake_contractor(num_to_create: int):
-    """ Tworzy w db kontrahentów w ilości = num_to_create """
+    """Tworzy w db kontrahentów w ilości = num_to_create"""
 
     with session_manager(engine, mapper_registry) as session:
         for _ in range(num_to_create):
@@ -44,5 +51,19 @@ def fake_contractor(num_to_create: int):
                 default=False,
             )
             session.add(contractor)
-            print(f'Dodano Kontrahenta: {contractor.company_name}')
+            print(f"Dodano Kontrahenta: {contractor.company_name}")
+        session.commit()
+
+
+def fake_service():
+    """Tworzy w db rekord usługi"""
+
+    with session_manager(engine, mapper_registry) as session:
+        service = Service(
+            name=f"Świadczenie usług programistycznych zgodnie z umową z \
+dnia {date.today().strftime('%d.%m.%Y')}",
+            amount=2450
+        )
+        session.add(service)
+        print("Dodano usługę")
         session.commit()
