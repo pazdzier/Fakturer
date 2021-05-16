@@ -5,12 +5,12 @@ from gui.designer.services import Ui_Dialog
 
 
 class ServicesDialog(QWidget, Ui_Dialog):
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, edit_record=False):
         super().__init__()
         self.parent = parent
         self.setupUi(self)
         QObject.connect(self.serviceEdit, SIGNAL("textChanged()"), self.txt_input_changed)
-        if self.parent.CHOSEN_SERVICE:
+        if edit_record:
             self.setWindowTitle('Edytuj istniejący rekord')
             self.populate_data()
         else:

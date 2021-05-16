@@ -3,12 +3,15 @@ from PySide2.QtCore import QRegExp
 from PySide2.QtGui import QRegExpValidator
 from PySide2.QtWidgets import QWidget, QMessageBox
 from database.models import User
-from utils.string_validators import bank_account_validator, nip_validator
+from utils.string_validators import (
+    bank_account_validator,
+    nip_validator,
+    zip_code_validator,
+)
 from gui.designer.add_edit_user import Ui_Dialog
 
 
 class UserDialog(QWidget, Ui_Dialog):
-
     def __init__(self, parent=None):
         super().__init__()
         self.parent = parent
@@ -42,24 +45,24 @@ class UserDialog(QWidget, Ui_Dialog):
         company_name = self.company_name.text()
         street = self.street.text()
         city = self.city.text()
-        zip_code = self.zip_code.text()
+        zip_code = zip_code_validator(self.zip_code.text())
         nip = nip_validator(self.nip.text())
 
-        if not nip:
-            QMessageBox.warning(
-                self,
-                "Błąd",
-                f"Wartość {self.nip.text()} jest nieprawidłowa dla pola NIP",
-            )
+        if isinstance(nip, tuple):
+            title, message = nip
+            QMessageBox.warning(self, title, message)
             return
+
+        if isinstance(zip_code, tuple):
+            title, message = zip_code
+            QMessageBox.warning(self, title, message)
+            return
+
         account_number = bank_account_validator(self.account_number.text())
 
-        if not account_number:
-            QMessageBox.warning(
-                self,
-                "Błąd",
-                f"Wartość {self.account_number.text()} jest nieprawidłowa dla pola Konto bankowe",
-            )
+        if isinstance(account_number, tuple):
+            title, message = account_number
+            QMessageBox.warning(self, title, message)
             return
 
         if not all(
@@ -67,6 +70,7 @@ class UserDialog(QWidget, Ui_Dialog):
         ):
             QMessageBox.warning(self, "Błąd", "Pola nie mogą być puste")
             return
+
         user = User(
             first_name=first_name,
             last_name=last_name,

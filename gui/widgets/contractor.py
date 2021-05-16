@@ -1,24 +1,3 @@
-"""
-    ..uml::
-        @startuml
-        @startsalt
-        {+.|Dialog
-        --| *           |*                     |*|*
-        . |Nazwa        |"                    "|*|*
-        . |NIP          |"                    "|*|*
-        . |Ulica        |"                    "|*|*
-        . |Miasto       |"                    "|*|*
-        . |Kod pocztowy |"                    "|*|*
-        . |.            | . |*|*
-        . |[X] Domyślny Kontrahent | *  |*|.
-        . |.            | [OK]  | [Cancel] | *
-
-        }
-        @endsaltBob
-        @enduml
-
-"""
-
 from PySide2.QtWidgets import QWidget, QMessageBox
 from database.models import Contractor
 from gui.designer.add_edit_contractor import Ui_Dialog
@@ -27,12 +6,12 @@ from utils.string_validators import zip_code_validator, nip_validator
 
 class ContractorDialog(QWidget, Ui_Dialog):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, edit_record=False):
         super().__init__()
         self.parent = parent
         self.setupUi(self)
         self.setWindowTitle('Dodaj nowego kontrahenta')
-        if self.parent.CHOSEN_CONTRACTOR:
+        if edit_record:
             self.setWindowTitle('Edytuj istniejący rekord')
             self.populate_data()
         self.buttonBox.accepted.connect(self.accept)

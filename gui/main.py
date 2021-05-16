@@ -119,7 +119,8 @@ class MainWindow(QMainWindow):
     def monitor_state(self):
         if all([
             self.CHOSEN_SERVICE,
-            self.CHOSEN_CONTRACTOR
+            self.CHOSEN_CONTRACTOR,
+            self.session.query(User).order_by(desc("id")).first()
         ]):
             self.ui.generateInvoice.setEnabled(True)
             self.ui.groupBox_3.setTitle("Podgląd faktury")
@@ -145,11 +146,10 @@ class MainWindow(QMainWindow):
             self.ui.textBrowser.insertHtml(new_preview)
         else:
             self.ui.generateInvoice.setEnabled(False)
-            self.ui.textBrowser.setHtml(" ")
 
     def edit_contractor(self):
 
-        self.nd = ContractorDialog(self)
+        self.nd = ContractorDialog(self, True)
         self.nd.show()
 
     def delete_contractor(self):
@@ -168,8 +168,7 @@ class MainWindow(QMainWindow):
         self.populate_contractors()
 
     def edit_service(self):
-
-        self.nd = ServicesDialog(self)
+        self.nd = ServicesDialog(self, True)
         self.nd.show()
 
     def delete_service(self):
@@ -223,7 +222,7 @@ class MainWindow(QMainWindow):
         self.nd.show()
 
     def open_new_contractor_dialog(self):
-        self.nd = ContractorDialog(self)
+        self.nd = ContractorDialog(self, False)
         self.nd.show()
 
     def open_calendar_widget(self):
@@ -235,7 +234,7 @@ class MainWindow(QMainWindow):
         self.nd.show()
 
     def open_new_service_dialog(self):
-        self.nd = ServicesDialog(self)
+        self.nd = ServicesDialog(self, False)
         self.nd.show()
 
     def open_licence_widget(self):
