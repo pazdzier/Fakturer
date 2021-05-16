@@ -66,14 +66,6 @@ class Ui_Dialog(object):
 
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
-        self.measureBox = QSpinBox(self.gridLayoutWidget_2)
-        self.measureBox.setObjectName(u"measureBox")
-        self.measureBox.setEnabled(False)
-        self.measureBox.setMinimum(1)
-        self.measureBox.setMaximum(1)
-
-        self.gridLayout.addWidget(self.measureBox, 3, 1, 1, 1)
-
         self.label_3 = QLabel(self.gridLayoutWidget_2)
         self.label_3.setObjectName(u"label_3")
 
@@ -89,6 +81,7 @@ class Ui_Dialog(object):
 
         self.amountBox = QDoubleSpinBox(self.gridLayoutWidget_2)
         self.amountBox.setObjectName(u"amountBox")
+        self.amountBox.setMinimum(1.000000000000000)
         self.amountBox.setMaximum(99999.990000000005239)
 
         self.gridLayout.addWidget(self.amountBox, 3, 3, 1, 1)
@@ -113,6 +106,12 @@ class Ui_Dialog(object):
 
         self.gridLayout.addItem(self.horizontalSpacer_2, 4, 3, 1, 1)
 
+        self.measureBox = QComboBox(self.gridLayoutWidget_2)
+        self.measureBox.addItem("")
+        self.measureBox.setObjectName(u"measureBox")
+
+        self.gridLayout.addWidget(self.measureBox, 3, 1, 1, 1)
+
 
         self.verticalLayout.addLayout(self.gridLayout)
 
@@ -133,5 +132,7 @@ class Ui_Dialog(object):
         self.label_3.setText(QCoreApplication.translate("Dialog", u"j.m.", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Ilo\u015b\u0107", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Cena jednostkowa [z\u0142, gr]", None))
+        self.measureBox.setItemText(0, QCoreApplication.translate("Dialog", u"szt.", None))
+
     # retranslateUi
 

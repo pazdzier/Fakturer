@@ -54,6 +54,7 @@ class Ui_MainWindow(object):
         self.actionLicence.setObjectName(u"actionLicence")
         self.actionInstrukcja_obs_ugi = QAction(MainWindow)
         self.actionInstrukcja_obs_ugi.setObjectName(u"actionInstrukcja_obs_ugi")
+        self.actionInstrukcja_obs_ugi.setEnabled(False)
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setEnabled(True)
@@ -106,7 +107,7 @@ class Ui_MainWindow(object):
         self.listWidget_2.setFrameShadow(QFrame.Sunken)
         self.gridLayoutWidget = QWidget(self.groupBox_2)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 540, 341, 61))
+        self.gridLayoutWidget.setGeometry(QRect(10, 540, 343, 61))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
@@ -142,11 +143,9 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.volumeBox, 3, 0, 1, 1)
 
-        self.measureBox = QSpinBox(self.gridLayoutWidget)
+        self.measureBox = QComboBox(self.gridLayoutWidget)
+        self.measureBox.addItem("")
         self.measureBox.setObjectName(u"measureBox")
-        self.measureBox.setEnabled(False)
-        self.measureBox.setMinimum(1)
-        self.measureBox.setMaximum(1)
 
         self.gridLayout.addWidget(self.measureBox, 3, 1, 1, 1)
 
@@ -239,12 +238,32 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Ilo\u015b\u0107", None))
         self.label_5.setText(QCoreApplication.translate("MainWindow", u"j.m.", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Cena jednostkowa [z\u0142, gr]", None))
+        self.measureBox.setItemText(0, QCoreApplication.translate("MainWindow", u"szt.", None))
+
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Skr\u00f3cona instrukcja", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:16px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; line-height:145%;\"><br /></p></body></html>", None))
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Witaj w aplikacji Fakturer - wygodnym narz\u0119dziu do automatyzacji wystawiania rachunk\u00f3w dla os\u00f3b b\u0119d\u0105cych na umowach b2b. </p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Przed wystawieniem pierwszej faktury:</p>\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-"
+                        "right: 0px; -qt-list-indent: 1;\"><li style=\"\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">uzupe\u0142nij swoje dane w zak\u0142adce <span style=\" color:#0000ff;\">Moje dane</span> </li>\n"
+"<li style=\"\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">dodaj kontrahenta w zak\u0142ace <span style=\" color:#0000ff;\">Kontrahenci</span> </li>\n"
+"<li style=\"\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Wska\u017c rodzaj i ilo\u015b\u0107 wykonany us\u0142ug w zak\u0142adce <span style=\" color:#0000ff;\">Us\u0142ugi</span></li>\n"
+"<li style=\"\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Wska\u017c termin p\u0142atno\u015bci w pozycji <span style=\" color:#0000ff;\">Termin p\u0142atno\u015bc</span>i (domy\u015blnie "
+                        "ustawione jest 14 dni kalendarzowych)</li></ul>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
+"<"
+                        "p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
+"<p align=\"right\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Dzi\u0119kujemy za wyb\u00f3r aplikacji Fakturer<br /><br />zesp\u00f3\u0142 developerski.</p></body></html>", None))
         self.menuKontrahenci.setTitle(QCoreApplication.translate("MainWindow", u"Kontrahenci", None))
         self.menuOMnie.setTitle(QCoreApplication.translate("MainWindow", u"Moje dane", None))
         self.menuHistoria_Faktur.setTitle(QCoreApplication.translate("MainWindow", u"Historia Faktur", None))
