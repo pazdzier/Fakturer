@@ -16,10 +16,11 @@ from gui.main import MainWindow
 
 
 if __name__ == "__main__":
-
+    if not os.path.isdir(os.path.join(os.getcwd(), "dev_tools", "logs")):
+        os.mkdir(os.path.join(os.getcwd(), "dev_tools", "logs"))
     logging.config.fileConfig(
         os.path.join(os.getcwd(), "static", "logging_config.ini"),
-        defaults={"logfilename": f"{date.today()}.txt"}
+        defaults={"logfilename": f"{date.today()}.txt"},
     )
     app = QApplication(sys.argv)
     with session_manager(engine, mapper_registry) as session:
