@@ -1,0 +1,9 @@
+*.db
+*.pyc
+*.pdf
+docs/_build/*
+!docs/_build/latex/*.pdf
+!docs/_build/epub/*.epub
+docs/_static/*
+docs/_templates/*
+
