@@ -5,6 +5,12 @@
 
     https://www.reportlab.com/docs/reportlab-userguide.pdf
 
+.. note::
+
+    Czcionka Verdana to czcionka w³asnoœciowa (Microsoft). Odpowiednikiem dla LINUX
+    jest DejaVuSans. Jesli Chcesz siê upewniæ, czy czcionka DejaVuSans jets dostêpna
+    to komenda: fc-list | grep "DejaVu Sans"
+
 """
 import subprocess
 from reportlab.lib.enums import TA_JUSTIFY, TA_RIGHT, TA_LEFT, TA_CENTER
@@ -19,23 +25,28 @@ from reportlab.platypus import Paragraph as PH
 from reportlab.lib.styles import ParagraphStyle as PS
 from reportlab.lib.units import cm
 from reportlab.pdfbase import pdfmetrics
-from reportlab.pdfbase.ttfonts import TTFont
+from reportlab.pdfbase.ttfonts import TTFont, TTFError
 from reportlab.lib import colors
 from .converters import numtoword
 from .pdf_tools import MCLine
 
-pdfmetrics.registerFont(TTFont("Verdana", "Verdana.ttf"))
-
+try:
+    pdfmetrics.registerFont(TTFont("Verdana", "Verdana.ttf"))
+    CHOSENFONT = "Verdana"
+except TTFError:
+    # for LINUX compatibility, tested on Debian 10, 5.4.72-microsoft-standard-WSL2
+    pdfmetrics.registerFont(TTFont("DejaVuSans", "DejaVuSans.ttf"))
+    CHOSENFONT = 'DejaVuSans'
 
 def create_invoice_pdf(invoice_name: str, bill):
     """Funkcja tworzy fakturê"""
 
-    style_right = PS(name="", fontName="Verdana", fontSize=8, alignment=TA_RIGHT)
-    style_left = PS(name="", fontName="Verdana", fontSize=8, alignment=TA_LEFT)
-    style_justify = PS(name="", fontName="Verdana", fontSize=8, alignment=TA_JUSTIFY)
-    style_center = PS(name="", fontName="Verdana", fontSize=8, alignment=TA_CENTER)
-    style5 = PS(name="", fontName="Verdana", fontSize=6, alignment=TA_LEFT)
-    style6 = PS(name="", fontName="Verdana", fontSize=6, alignment=TA_RIGHT)
+    style_right = PS(name="", fontName=CHOSENFONT, fontSize=8, alignment=TA_RIGHT)
+    style_left = PS(name="", fontName=CHOSENFONT, fontSize=8, alignment=TA_LEFT)
+    style_justify = PS(name="", fontName=CHOSENFONT, fontSize=8, alignment=TA_JUSTIFY)
+    style_center = PS(name="", fontName=CHOSENFONT, fontSize=8, alignment=TA_CENTER)
+    style5 = PS(name="", fontName=CHOSENFONT, fontSize=6, alignment=TA_LEFT)
+    style6 = PS(name="", fontName=CHOSENFONT, fontSize=6, alignment=TA_RIGHT)
 
     invoice = list()
     invoice.append(
@@ -101,7 +112,7 @@ def create_invoice_pdf(invoice_name: str, bill):
                     0.25,
                     colors.black,
                 ),
-                ("FONT", (0, 0), (-1, -1), "Verdana"),
+                ("FONT", (0, 0), (-1, -1), CHOSENFONT),
                 ("FONTSIZE", (0, 0), (-1, -1), 8),
                 ("BACKGROUND", (0, 0), (-1, -1), "#f2f2f2"),
             ]
@@ -154,7 +165,7 @@ def create_invoice_pdf(invoice_name: str, bill):
                 ("BOX", (0, 0), (-1, -2), 0.25, colors.black),
                 ("INNERGRID", (-1, -2), (-1, -1), 0.25, colors.black),
                 ("BOX", (-1, -2), (-1, -1), 0.25, colors.black),
-                ("FONT", (0, 0), (-1, -1), "Verdana"),
+                ("FONT", (0, 0), (-1, -1), CHOSENFONT),
             ]
         )
     )
@@ -184,7 +195,7 @@ def create_invoice_pdf(invoice_name: str, bill):
                     0.25,
                     colors.black,
                 ),
-                ("FONT", (0, 0), (-1, -1), "Verdana"),
+                ("FONT", (0, 0), (-1, -1), CHOSENFONT),
                 ("FONTSIZE", (0, 0), (-1, -1), 8),
                 ("BACKGROUND", (0, 0), (-1, -1), "#f2f2f2"),
             ]
@@ -201,8 +212,8 @@ def create_invoice_pdf(invoice_name: str, bill):
             PH("_" * 49, style6),
         ],
         [
-            PH("podpis osoby upowaznionej do odbioru Rachunku", style5),
-            PH("podpis osoby upowaznionej do wystawienia Rachunku", style6),
+            PH("podpis osoby upowa¿nionej do odbioru Rachunku", style5),
+            PH("podpis osoby upowa¿nionej do wystawienia Rachunku", style6),
         ],
     ]
     invoice.append(Table(data, colWidths=[8.4 * cm, 8.4 * cm]))
