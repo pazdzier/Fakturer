@@ -10,7 +10,7 @@ from database.models import (
     mapper_registry,
 )
 
-locale.setlocale(locale.LC_ALL, "pl")
+locale.setlocale(locale.LC_ALL, "pl_PL.utf8")
 
 from gui.main import MainWindow
 
