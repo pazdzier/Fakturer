@@ -17,22 +17,31 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(533, 481)
-        self.gridLayoutWidget_2 = QWidget(Dialog)
-        self.gridLayoutWidget_2.setObjectName(u"gridLayoutWidget_2")
-        self.gridLayoutWidget_2.setGeometry(QRect(10, 10, 511, 461))
-        self.gridLayout_2 = QGridLayout(self.gridLayoutWidget_2)
+        Dialog.resize(533, 337)
+        self.gridLayout_3 = QGridLayout(Dialog)
+        self.gridLayout_3.setObjectName(u"gridLayout_3")
+        self.gridLayout_2 = QGridLayout()
         self.gridLayout_2.setObjectName(u"gridLayout_2")
-        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
         self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.label = QLabel(self.gridLayoutWidget_2)
+        self.label = QLabel(Dialog)
         self.label.setObjectName(u"label")
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
 
         self.verticalLayout.addWidget(self.label)
 
-        self.serviceEdit = QPlainTextEdit(self.gridLayoutWidget_2)
+        self.serviceEdit = QPlainTextEdit(Dialog)
         self.serviceEdit.setObjectName(u"serviceEdit")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Minimum)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.serviceEdit.sizePolicy().hasHeightForWidth())
+        self.serviceEdit.setSizePolicy(sizePolicy1)
+        self.serviceEdit.setMinimumSize(QSize(0, 107))
 
         self.verticalLayout.addWidget(self.serviceEdit)
 
@@ -44,7 +53,7 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer)
 
-        self.label_6 = QLabel(self.gridLayoutWidget_2)
+        self.label_6 = QLabel(Dialog)
         self.label_6.setObjectName(u"label_6")
         font = QFont()
         font.setPointSize(7)
@@ -52,7 +61,7 @@ class Ui_Dialog(object):
 
         self.horizontalLayout_3.addWidget(self.label_6)
 
-        self.char_limit = QLabel(self.gridLayoutWidget_2)
+        self.char_limit = QLabel(Dialog)
         self.char_limit.setObjectName(u"char_limit")
         self.char_limit.setFont(font)
 
@@ -66,12 +75,12 @@ class Ui_Dialog(object):
 
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
-        self.label_3 = QLabel(self.gridLayoutWidget_2)
+        self.label_3 = QLabel(Dialog)
         self.label_3.setObjectName(u"label_3")
 
         self.gridLayout.addWidget(self.label_3, 2, 1, 1, 1)
 
-        self.volumeBox = QSpinBox(self.gridLayoutWidget_2)
+        self.volumeBox = QSpinBox(Dialog)
         self.volumeBox.setObjectName(u"volumeBox")
         self.volumeBox.setEnabled(False)
         self.volumeBox.setMinimum(1)
@@ -79,25 +88,25 @@ class Ui_Dialog(object):
 
         self.gridLayout.addWidget(self.volumeBox, 3, 0, 1, 1)
 
-        self.amountBox = QDoubleSpinBox(self.gridLayoutWidget_2)
+        self.amountBox = QDoubleSpinBox(Dialog)
         self.amountBox.setObjectName(u"amountBox")
         self.amountBox.setMinimum(1.000000000000000)
         self.amountBox.setMaximum(99999.990000000005239)
 
         self.gridLayout.addWidget(self.amountBox, 3, 3, 1, 1)
 
-        self.label_2 = QLabel(self.gridLayoutWidget_2)
+        self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
 
-        self.buttonBox = QDialogButtonBox(self.gridLayoutWidget_2)
+        self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
 
         self.gridLayout.addWidget(self.buttonBox, 5, 3, 1, 1)
 
-        self.label_4 = QLabel(self.gridLayoutWidget_2)
+        self.label_4 = QLabel(Dialog)
         self.label_4.setObjectName(u"label_4")
 
         self.gridLayout.addWidget(self.label_4, 2, 3, 1, 1)
@@ -106,7 +115,7 @@ class Ui_Dialog(object):
 
         self.gridLayout.addItem(self.horizontalSpacer_2, 4, 3, 1, 1)
 
-        self.measureBox = QComboBox(self.gridLayoutWidget_2)
+        self.measureBox = QComboBox(Dialog)
         self.measureBox.addItem("")
         self.measureBox.setObjectName(u"measureBox")
 
@@ -117,6 +126,9 @@ class Ui_Dialog(object):
 
 
         self.gridLayout_2.addLayout(self.verticalLayout, 0, 0, 1, 1)
+
+
+        self.gridLayout_3.addLayout(self.gridLayout_2, 0, 0, 1, 1)
 
 
         self.retranslateUi(Dialog)
