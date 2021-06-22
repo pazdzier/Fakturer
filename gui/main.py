@@ -126,7 +126,6 @@ class MainWindow(QMainWindow):
             self.session.query(User).order_by(desc("id")).first()
         ]):
             self.ui.generateInvoice.setEnabled(True)
-            self.ui.groupBox_3.setTitle("Podgląd faktury")
             bills_count = (
                 self.session.query(Bill).filter(
                     extract("month", Bill.created) == QDate.currentDate().month()

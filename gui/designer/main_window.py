@@ -17,8 +17,8 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1458, 775)
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        MainWindow.resize(1095, 640)
+        sizePolicy = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(MainWindow.sizePolicy().hasHeightForWidth())
@@ -64,30 +64,43 @@ class Ui_MainWindow(object):
         self.centralwidget.setEnabled(True)
         self.gridLayout_2 = QGridLayout(self.centralwidget)
         self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.line = QFrame(self.centralwidget)
+        self.line.setObjectName(u"line")
+        self.line.setFrameShape(QFrame.HLine)
+        self.line.setFrameShadow(QFrame.Sunken)
+
+        self.gridLayout_2.addWidget(self.line, 1, 1, 1, 1)
+
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.groupBox_2 = QGroupBox(self.centralwidget)
-        self.groupBox_2.setObjectName(u"groupBox_2")
-        self.groupBox_2.setAlignment(Qt.AlignCenter)
-        self.groupBox_2.setFlat(False)
-        self.groupBox_2.setCheckable(False)
-        self.label = QLabel(self.groupBox_2)
+        self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.label = QLabel(self.centralwidget)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(30, 30, 151, 16))
-        self.label_2 = QLabel(self.groupBox_2)
+
+        self.verticalLayout.addWidget(self.label)
+
+        self.listWidget = QListWidget(self.centralwidget)
+        self.listWidget.setObjectName(u"listWidget")
+        self.listWidget.setMinimumSize(QSize(0, 0))
+        self.listWidget.setFrameShadow(QFrame.Sunken)
+
+        self.verticalLayout.addWidget(self.listWidget)
+
+        self.label_2 = QLabel(self.centralwidget)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(30, 300, 121, 19))
-        self.listWidget_2 = QListWidget(self.groupBox_2)
+
+        self.verticalLayout.addWidget(self.label_2)
+
+        self.listWidget_2 = QListWidget(self.centralwidget)
         self.listWidget_2.setObjectName(u"listWidget_2")
-        self.listWidget_2.setGeometry(QRect(10, 320, 691, 211))
         self.listWidget_2.setFrameShadow(QFrame.Sunken)
-        self.gridLayoutWidget = QWidget(self.groupBox_2)
-        self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 540, 691, 79))
-        self.gridLayout = QGridLayout(self.gridLayoutWidget)
+
+        self.verticalLayout.addWidget(self.listWidget_2)
+
+        self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.amountBox = QDoubleSpinBox(self.gridLayoutWidget)
+        self.amountBox = QDoubleSpinBox(self.centralwidget)
         self.amountBox.setObjectName(u"amountBox")
         self.amountBox.setEnabled(False)
         self.amountBox.setReadOnly(False)
@@ -96,18 +109,18 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.amountBox, 3, 2, 1, 1)
 
-        self.label_3 = QLabel(self.gridLayoutWidget)
+        self.label_3 = QLabel(self.centralwidget)
         self.label_3.setObjectName(u"label_3")
         self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
 
         self.gridLayout.addWidget(self.label_3, 2, 3, 1, 1)
 
-        self.label_6 = QLabel(self.gridLayoutWidget)
+        self.label_6 = QLabel(self.centralwidget)
         self.label_6.setObjectName(u"label_6")
 
         self.gridLayout.addWidget(self.label_6, 2, 2, 1, 1)
 
-        self.volumeBox = QSpinBox(self.gridLayoutWidget)
+        self.volumeBox = QSpinBox(self.centralwidget)
         self.volumeBox.setObjectName(u"volumeBox")
         self.volumeBox.setEnabled(False)
         self.volumeBox.setMinimum(1)
@@ -115,57 +128,56 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.volumeBox, 3, 0, 1, 1)
 
-        self.measureBox = QComboBox(self.gridLayoutWidget)
+        self.measureBox = QComboBox(self.centralwidget)
         self.measureBox.addItem("")
         self.measureBox.setObjectName(u"measureBox")
 
         self.gridLayout.addWidget(self.measureBox, 3, 1, 1, 1)
 
-        self.label_5 = QLabel(self.gridLayoutWidget)
+        self.label_5 = QLabel(self.centralwidget)
         self.label_5.setObjectName(u"label_5")
 
         self.gridLayout.addWidget(self.label_5, 2, 1, 1, 1)
 
-        self.label_4 = QLabel(self.gridLayoutWidget)
+        self.label_4 = QLabel(self.centralwidget)
         self.label_4.setObjectName(u"label_4")
 
         self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
 
-        self.calendarButton = QPushButton(self.gridLayoutWidget)
+        self.calendarButton = QPushButton(self.centralwidget)
         self.calendarButton.setObjectName(u"calendarButton")
 
         self.gridLayout.addWidget(self.calendarButton, 2, 4, 1, 1)
 
-        self.generateInvoice = QPushButton(self.gridLayoutWidget)
+        self.generateInvoice = QPushButton(self.centralwidget)
         self.generateInvoice.setObjectName(u"generateInvoice")
         self.generateInvoice.setEnabled(False)
 
         self.gridLayout.addWidget(self.generateInvoice, 3, 4, 1, 1)
 
-        self.listWidget = QListWidget(self.groupBox_2)
-        self.listWidget.setObjectName(u"listWidget")
-        self.listWidget.setGeometry(QRect(10, 50, 691, 211))
-        self.listWidget.setMinimumSize(QSize(691, 0))
-        self.listWidget.setFrameShadow(QFrame.Sunken)
 
-        self.horizontalLayout.addWidget(self.groupBox_2)
+        self.verticalLayout.addLayout(self.gridLayout)
 
-        self.groupBox_3 = QGroupBox(self.centralwidget)
-        self.groupBox_3.setObjectName(u"groupBox_3")
-        self.groupBox_3.setAlignment(Qt.AlignCenter)
-        self.textBrowser = QTextBrowser(self.groupBox_3)
+
+        self.horizontalLayout.addLayout(self.verticalLayout)
+
+        self.textBrowser = QTextBrowser(self.centralwidget)
         self.textBrowser.setObjectName(u"textBrowser")
         self.textBrowser.setEnabled(True)
-        self.textBrowser.setGeometry(QRect(120, 30, 501, 671))
-        self.textBrowser.setMinimumSize(QSize(501, 671))
+        sizePolicy1 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Expanding)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.textBrowser.sizePolicy().hasHeightForWidth())
+        self.textBrowser.setSizePolicy(sizePolicy1)
+        self.textBrowser.setMinimumSize(QSize(490, 0))
         self.textBrowser.viewport().setProperty("cursor", QCursor(Qt.ArrowCursor))
         self.textBrowser.setFrameShape(QFrame.StyledPanel)
         self.textBrowser.setFrameShadow(QFrame.Sunken)
 
-        self.horizontalLayout.addWidget(self.groupBox_3)
+        self.horizontalLayout.addWidget(self.textBrowser)
 
 
-        self.gridLayout_2.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+        self.gridLayout_2.addLayout(self.horizontalLayout, 2, 1, 1, 1)
 
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
@@ -173,7 +185,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 1458, 31))
+        self.menuBar.setGeometry(QRect(0, 0, 1095, 31))
         self.menuKontrahenci = QMenu(self.menuBar)
         self.menuKontrahenci.setObjectName(u"menuKontrahenci")
         self.menuOMnie = QMenu(self.menuBar)
@@ -228,7 +240,6 @@ class Ui_MainWindow(object):
         self.actionInstrukcja_obs_ugi.setText(QCoreApplication.translate("MainWindow", u"Instrukcja obs\u0142ugi", None))
         self.contractor_to_file.setText(QCoreApplication.translate("MainWindow", u"Eksport do pliku", None))
         self.contractor_from_file.setText(QCoreApplication.translate("MainWindow", u"Import z pliku", None))
-        self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Wystaw faktur\u0119", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Wybierz kontrahenta", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Wybierz us\u0142ug\u0119", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Termin p\u0142atno\u015bci", None))
@@ -239,7 +250,6 @@ class Ui_MainWindow(object):
         self.label_4.setText(QCoreApplication.translate("MainWindow", u"Ilo\u015b\u0107", None))
         self.calendarButton.setText(QCoreApplication.translate("MainWindow", u"wybierz ...", None))
         self.generateInvoice.setText(QCoreApplication.translate("MainWindow", u"Generuj faktur\u0119", None))
-        self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Skr\u00f3cona instrukcja", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
