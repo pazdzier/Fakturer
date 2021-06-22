@@ -17,30 +17,35 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(654, 422)
-        Dialog.setMinimumSize(QSize(654, 422))
+        Dialog.resize(374, 284)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(100)
+        sizePolicy.setVerticalStretch(100)
+        sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
+        Dialog.setSizePolicy(sizePolicy)
         Dialog.setMaximumSize(QSize(654, 422))
-        self.gridLayoutWidget = QWidget(Dialog)
-        self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 10, 631, 401))
-        self.gridLayout = QGridLayout(self.gridLayoutWidget)
+        self.gridLayout = QGridLayout(Dialog)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.textBrowser = QTextBrowser(self.gridLayoutWidget)
-        self.textBrowser.setObjectName(u"textBrowser")
-        self.textBrowser.setEnabled(True)
-        sizePolicy = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.textBrowser.sizePolicy().hasHeightForWidth())
-        self.textBrowser.setSizePolicy(sizePolicy)
-
-        self.gridLayout.addWidget(self.textBrowser, 1, 1, 1, 1)
-
-        self.label = QLabel(self.gridLayoutWidget)
+        self.verticalLayout = QVBoxLayout()
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.label = QLabel(Dialog)
         self.label.setObjectName(u"label")
 
-        self.gridLayout.addWidget(self.label, 0, 1, 1, 1)
+        self.verticalLayout.addWidget(self.label)
+
+        self.textBrowser = QTextBrowser(Dialog)
+        self.textBrowser.setObjectName(u"textBrowser")
+        self.textBrowser.setEnabled(True)
+        sizePolicy1 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
+        sizePolicy1.setHorizontalStretch(100)
+        sizePolicy1.setVerticalStretch(100)
+        sizePolicy1.setHeightForWidth(self.textBrowser.sizePolicy().hasHeightForWidth())
+        self.textBrowser.setSizePolicy(sizePolicy1)
+
+        self.verticalLayout.addWidget(self.textBrowser)
+
+
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
 
 
         self.retranslateUi(Dialog)
