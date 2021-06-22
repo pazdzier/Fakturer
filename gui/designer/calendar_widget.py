@@ -17,34 +17,33 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(488, 380)
-        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Dialog.sizePolicy().hasHeightForWidth())
         Dialog.setSizePolicy(sizePolicy)
-        self.verticalLayoutWidget = QWidget(Dialog)
-        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 466, 291))
-        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
+        self.gridLayout = QGridLayout(Dialog)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.calendarWidget = QCalendarWidget(self.verticalLayoutWidget)
+        self.calendarWidget = QCalendarWidget(Dialog)
         self.calendarWidget.setObjectName(u"calendarWidget")
         self.calendarWidget.setGridVisible(True)
 
         self.verticalLayout.addWidget(self.calendarWidget)
 
-        self.verticalLayoutWidget_2 = QWidget(Dialog)
-        self.verticalLayoutWidget_2.setObjectName(u"verticalLayoutWidget_2")
-        self.verticalLayoutWidget_2.setGeometry(QRect(360, 310, 114, 61))
-        self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
+
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+
+        self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.pushButton = QPushButton(self.verticalLayoutWidget_2)
+        self.pushButton = QPushButton(Dialog)
         self.pushButton.setObjectName(u"pushButton")
 
         self.verticalLayout_2.addWidget(self.pushButton)
+
+
+        self.gridLayout.addLayout(self.verticalLayout_2, 1, 0, 1, 1)
 
 
         self.retranslateUi(Dialog)
