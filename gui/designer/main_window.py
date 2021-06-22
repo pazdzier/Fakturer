@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         if not MainWindow.objectName():
             MainWindow.setObjectName(u"MainWindow")
-        MainWindow.resize(1458, 804)
+        MainWindow.resize(1458, 775)
         sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -55,16 +55,18 @@ class Ui_MainWindow(object):
         self.actionInstrukcja_obs_ugi = QAction(MainWindow)
         self.actionInstrukcja_obs_ugi.setObjectName(u"actionInstrukcja_obs_ugi")
         self.actionInstrukcja_obs_ugi.setEnabled(False)
+        self.contractor_to_file = QAction(MainWindow)
+        self.contractor_to_file.setObjectName(u"contractor_to_file")
+        self.contractor_from_file = QAction(MainWindow)
+        self.contractor_from_file.setObjectName(u"contractor_from_file")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setEnabled(True)
-        self.horizontalLayoutWidget = QWidget(self.centralwidget)
-        self.horizontalLayoutWidget.setObjectName(u"horizontalLayoutWidget")
-        self.horizontalLayoutWidget.setGeometry(QRect(10, 10, 1431, 711))
-        self.horizontalLayout = QHBoxLayout(self.horizontalLayoutWidget)
+        self.gridLayout_2 = QGridLayout(self.centralwidget)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
-        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
-        self.groupBox_2 = QGroupBox(self.horizontalLayoutWidget)
+        self.groupBox_2 = QGroupBox(self.centralwidget)
         self.groupBox_2.setObjectName(u"groupBox_2")
         self.groupBox_2.setAlignment(Qt.AlignCenter)
         self.groupBox_2.setFlat(False)
@@ -72,32 +74,6 @@ class Ui_MainWindow(object):
         self.label = QLabel(self.groupBox_2)
         self.label.setObjectName(u"label")
         self.label.setGeometry(QRect(30, 30, 151, 16))
-        self.formLayoutWidget = QWidget(self.groupBox_2)
-        self.formLayoutWidget.setObjectName(u"formLayoutWidget")
-        self.formLayoutWidget.setGeometry(QRect(250, 611, 451, 91))
-        self.formLayout = QFormLayout(self.formLayoutWidget)
-        self.formLayout.setObjectName(u"formLayout")
-        self.formLayout.setContentsMargins(0, 0, 0, 0)
-        self.label_3 = QLabel(self.formLayoutWidget)
-        self.label_3.setObjectName(u"label_3")
-
-        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_3)
-
-        self.calendarButton = QPushButton(self.formLayoutWidget)
-        self.calendarButton.setObjectName(u"calendarButton")
-
-        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.calendarButton)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.formLayout.setItem(1, QFormLayout.FieldRole, self.verticalSpacer)
-
-        self.generateInvoice = QPushButton(self.formLayoutWidget)
-        self.generateInvoice.setObjectName(u"generateInvoice")
-        self.generateInvoice.setEnabled(False)
-
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.generateInvoice)
-
         self.label_2 = QLabel(self.groupBox_2)
         self.label_2.setObjectName(u"label_2")
         self.label_2.setGeometry(QRect(30, 300, 121, 19))
@@ -107,25 +83,10 @@ class Ui_MainWindow(object):
         self.listWidget_2.setFrameShadow(QFrame.Sunken)
         self.gridLayoutWidget = QWidget(self.groupBox_2)
         self.gridLayoutWidget.setObjectName(u"gridLayoutWidget")
-        self.gridLayoutWidget.setGeometry(QRect(10, 540, 343, 61))
+        self.gridLayoutWidget.setGeometry(QRect(10, 540, 691, 79))
         self.gridLayout = QGridLayout(self.gridLayoutWidget)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
-        self.label_4 = QLabel(self.gridLayoutWidget)
-        self.label_4.setObjectName(u"label_4")
-
-        self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
-
-        self.label_5 = QLabel(self.gridLayoutWidget)
-        self.label_5.setObjectName(u"label_5")
-
-        self.gridLayout.addWidget(self.label_5, 2, 1, 1, 1)
-
-        self.label_6 = QLabel(self.gridLayoutWidget)
-        self.label_6.setObjectName(u"label_6")
-
-        self.gridLayout.addWidget(self.label_6, 2, 2, 1, 1)
-
         self.amountBox = QDoubleSpinBox(self.gridLayoutWidget)
         self.amountBox.setObjectName(u"amountBox")
         self.amountBox.setEnabled(False)
@@ -134,6 +95,17 @@ class Ui_MainWindow(object):
         self.amountBox.setMaximum(99999.990000000005239)
 
         self.gridLayout.addWidget(self.amountBox, 3, 2, 1, 1)
+
+        self.label_3 = QLabel(self.gridLayoutWidget)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setAlignment(Qt.AlignRight|Qt.AlignTrailing|Qt.AlignVCenter)
+
+        self.gridLayout.addWidget(self.label_3, 2, 3, 1, 1)
+
+        self.label_6 = QLabel(self.gridLayoutWidget)
+        self.label_6.setObjectName(u"label_6")
+
+        self.gridLayout.addWidget(self.label_6, 2, 2, 1, 1)
 
         self.volumeBox = QSpinBox(self.gridLayoutWidget)
         self.volumeBox.setObjectName(u"volumeBox")
@@ -149,29 +121,52 @@ class Ui_MainWindow(object):
 
         self.gridLayout.addWidget(self.measureBox, 3, 1, 1, 1)
 
+        self.label_5 = QLabel(self.gridLayoutWidget)
+        self.label_5.setObjectName(u"label_5")
+
+        self.gridLayout.addWidget(self.label_5, 2, 1, 1, 1)
+
+        self.label_4 = QLabel(self.gridLayoutWidget)
+        self.label_4.setObjectName(u"label_4")
+
+        self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
+
+        self.calendarButton = QPushButton(self.gridLayoutWidget)
+        self.calendarButton.setObjectName(u"calendarButton")
+
+        self.gridLayout.addWidget(self.calendarButton, 2, 4, 1, 1)
+
+        self.generateInvoice = QPushButton(self.gridLayoutWidget)
+        self.generateInvoice.setObjectName(u"generateInvoice")
+        self.generateInvoice.setEnabled(False)
+
+        self.gridLayout.addWidget(self.generateInvoice, 3, 4, 1, 1)
+
         self.listWidget = QListWidget(self.groupBox_2)
         self.listWidget.setObjectName(u"listWidget")
         self.listWidget.setGeometry(QRect(10, 50, 691, 211))
+        self.listWidget.setMinimumSize(QSize(691, 0))
         self.listWidget.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout.addWidget(self.groupBox_2)
 
-        self.groupBox_3 = QGroupBox(self.horizontalLayoutWidget)
+        self.groupBox_3 = QGroupBox(self.centralwidget)
         self.groupBox_3.setObjectName(u"groupBox_3")
         self.groupBox_3.setAlignment(Qt.AlignCenter)
         self.textBrowser = QTextBrowser(self.groupBox_3)
         self.textBrowser.setObjectName(u"textBrowser")
         self.textBrowser.setEnabled(True)
         self.textBrowser.setGeometry(QRect(120, 30, 501, 671))
-        self.textBrowser.setMinimumSize(QSize(501, 0))
+        self.textBrowser.setMinimumSize(QSize(501, 671))
         self.textBrowser.viewport().setProperty("cursor", QCursor(Qt.ArrowCursor))
         self.textBrowser.setFrameShape(QFrame.StyledPanel)
         self.textBrowser.setFrameShadow(QFrame.Sunken)
 
         self.horizontalLayout.addWidget(self.groupBox_3)
 
-        self.groupBox_3.raise_()
-        self.groupBox_2.raise_()
+
+        self.gridLayout_2.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QStatusBar(MainWindow)
         self.statusbar.setObjectName(u"statusbar")
@@ -201,6 +196,8 @@ class Ui_MainWindow(object):
         self.menuKontrahenci.addAction(self.addContractor_2)
         self.menuKontrahenci.addAction(self.editContractor)
         self.menuKontrahenci.addAction(self.delContractor)
+        self.menuKontrahenci.addAction(self.contractor_to_file)
+        self.menuKontrahenci.addAction(self.contractor_from_file)
         self.menuOMnie.addAction(self.edit_my_info)
         self.menuO_programie.addAction(self.actionHistoria_zmian)
         self.menuO_programie.addAction(self.actionAbout)
@@ -229,17 +226,19 @@ class Ui_MainWindow(object):
         self.delService.setText(QCoreApplication.translate("MainWindow", u"Usu\u0144", None))
         self.actionLicence.setText(QCoreApplication.translate("MainWindow", u"Licencja", None))
         self.actionInstrukcja_obs_ugi.setText(QCoreApplication.translate("MainWindow", u"Instrukcja obs\u0142ugi", None))
+        self.contractor_to_file.setText(QCoreApplication.translate("MainWindow", u"Eksport do pliku", None))
+        self.contractor_from_file.setText(QCoreApplication.translate("MainWindow", u"Import z pliku", None))
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"Wystaw faktur\u0119", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Wybierz kontrahenta", None))
-        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Termin p\u0142atno\u015bci", None))
-        self.calendarButton.setText(QCoreApplication.translate("MainWindow", u"wybierz ...", None))
-        self.generateInvoice.setText(QCoreApplication.translate("MainWindow", u"Generuj faktur\u0119", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Wybierz us\u0142ug\u0119", None))
-        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Ilo\u015b\u0107", None))
-        self.label_5.setText(QCoreApplication.translate("MainWindow", u"j.m.", None))
+        self.label_3.setText(QCoreApplication.translate("MainWindow", u"Termin p\u0142atno\u015bci", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"Cena jednostkowa [z\u0142, gr]", None))
         self.measureBox.setItemText(0, QCoreApplication.translate("MainWindow", u"szt.", None))
 
+        self.label_5.setText(QCoreApplication.translate("MainWindow", u"j.m.", None))
+        self.label_4.setText(QCoreApplication.translate("MainWindow", u"Ilo\u015b\u0107", None))
+        self.calendarButton.setText(QCoreApplication.translate("MainWindow", u"wybierz ...", None))
+        self.generateInvoice.setText(QCoreApplication.translate("MainWindow", u"Generuj faktur\u0119", None))
         self.groupBox_3.setTitle(QCoreApplication.translate("MainWindow", u"Skr\u00f3cona instrukcja", None))
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"

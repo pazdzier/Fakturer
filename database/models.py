@@ -99,6 +99,15 @@ class Contractor:
     def __repr__(self):
         return f"Contractor: {self.company_name}"
 
+    def to_json(self):
+        return {
+            'default': self.default,
+            'company_name': self.company_name,
+            'nip': self._nip,
+            'street': self.street,
+            'city': self.city,
+            'zip_code': self.zip_code,
+        }
 
 @mapper_registry.mapped
 class ServiceAssociation:

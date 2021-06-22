@@ -13,6 +13,7 @@ from database.models import (
     ServiceAssociation
 )
 from utils.converters import bill_name, bill_file_name, numtoword
+from utils.file_handlers import save_to_json, save_from_json
 from utils.pdf_creator import create_invoice_pdf
 from .widgets.user import UserDialog
 from .widgets.contractor import ContractorDialog
@@ -56,6 +57,8 @@ class MainWindow(QMainWindow):
         self.ui.actionAbout.triggered.connect(self.open_about_widget)
         self.ui.addService.triggered.connect(self.open_new_service_dialog)
         self.ui.actionLicence.triggered.connect(self.open_licence_widget)
+        self.ui.contractor_to_file.triggered.connect(self.export_contractors_to_file)
+        self.ui.contractor_from_file.triggered.connect(self.import_contractors_from_file)
         self.show()
 
     def self_contractor_changed(self, curr):
@@ -240,3 +243,13 @@ class MainWindow(QMainWindow):
     def open_licence_widget(self):
         self.nd = LicenceDialog(self)
         self.nd.show()
+
+    def export_contractors_to_file(self):
+        contractors = (
+            self.session.query(Contractor).filter_by(deleted=False).order_by(desc("id"))
+        )
+        save_to_json(self, contractors)
+
+    def import_contractors_from_file(self):
+        save_from_json(self, Contractor)
+        self.populate_contractors()
