@@ -4,10 +4,15 @@
 
 """
 
+from datetime import datetime
 import json
+import re
+import os
+import subprocess
 from json.decoder import JSONDecodeError
 from sqlalchemy.orm.query import Query
 from PySide2.QtWidgets import QFileDialog, QMessageBox
+from utils.constants import STATIC
 
 
 def save_to_json(parent, query: Query) -> None:
@@ -31,9 +36,13 @@ def save_to_json(parent, query: Query) -> None:
     if not filename.endswith('.json'):
         filename += '.json'
     file = open(filename, 'w')
-    result = json.dumps(
-        [contractor.to_json() for contractor in query]
-    )
+    try:
+        result = json.dumps(
+            [contractor.to_json() for contractor in query]
+        )
+    except TypeError:
+        # when query is just one record
+        result = json.dumps(query.to_json())
     file.write(result)
     file.close()
     QMessageBox.information(
@@ -71,3 +80,16 @@ def save_from_json(parent, db_model):
                 "Nie udało się zaimportować rekordów, plik źródłowy jest \
 nieprawidłowy lub uszkodzony"
             )
+
+def git_history_to_json():
+
+    result = subprocess.check_output(['git', 'log'])
+    result = result.decode('utf-8')
+    dates = re.findall(r'Date:\s*(.*)?\+\d*', result)
+    dates = [
+        str(datetime.strptime(i.strip(), '%a %b %d %H:%M:%S %Y')) for i in dates
+    ]
+    descriptions = list(map(str.strip, result.split('\n\n')[1::2]))
+    result = json.dumps(list(zip(dates, descriptions)))
+    with open(os.path.join(STATIC, 'history.json'), 'w') as file:
+        file.write(result)

@@ -240,6 +240,8 @@ p, li { white-space: pre-wrap; }
      <string>Moje dane</string>
     </property>
     <addaction name="edit_my_info"/>
+    <addaction name="user_to_file"/>
+    <addaction name="user_from_file"/>
    </widget>
    <widget class="QMenu" name="menuHistoria_Faktur">
     <property name="enabled">
@@ -256,7 +258,7 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>O programie</string>
     </property>
-    <addaction name="actionHistoria_zmian"/>
+    <addaction name="actionHistory"/>
     <addaction name="actionAbout"/>
     <addaction name="actionLicence"/>
     <addaction name="actionInstrukcja_obs_ugi"/>
@@ -293,12 +295,12 @@ p, li { white-space: pre-wrap; }
     <string>Edycja</string>
    </property>
   </action>
-  <action name="actionHistoria_zmian">
+  <action name="actionHistory">
    <property name="checkable">
     <bool>false</bool>
    </property>
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>Historia zmian</string>
@@ -365,6 +367,22 @@ p, li { white-space: pre-wrap; }
    </property>
   </action>
   <action name="contractor_from_file">
+   <property name="text">
+    <string>Import z pliku</string>
+   </property>
+  </action>
+  <action name="user_to_file">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Eksport do pliku</string>
+   </property>
+  </action>
+  <action name="user_from_file">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Import z pliku</string>
    </property>
