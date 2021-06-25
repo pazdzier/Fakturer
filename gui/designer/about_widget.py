@@ -18,13 +18,12 @@ class Ui_Dialog(object):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
         Dialog.resize(584, 572)
-        self.verticalLayoutWidget = QWidget(Dialog)
-        self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 561, 551))
-        self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
+        Dialog.setMinimumSize(QSize(584, 572))
+        self.gridLayout = QGridLayout(Dialog)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.verticalLayout = QVBoxLayout()
         self.verticalLayout.setObjectName(u"verticalLayout")
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
-        self.label_2 = QLabel(self.verticalLayoutWidget)
+        self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
         sizePolicy = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
@@ -36,60 +35,60 @@ class Ui_Dialog(object):
 
         self.verticalLayout.addWidget(self.label_2, 0, Qt.AlignHCenter)
 
-        self.tabWidget = QTabWidget(self.verticalLayoutWidget)
+        self.tabWidget = QTabWidget(Dialog)
         self.tabWidget.setObjectName(u"tabWidget")
+        sizePolicy.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
+        self.tabWidget.setSizePolicy(sizePolicy)
         self.tabWidget.setTabShape(QTabWidget.Rounded)
         self.tab_3 = QWidget()
         self.tab_3.setObjectName(u"tab_3")
         self.formLayoutWidget = QWidget(self.tab_3)
         self.formLayoutWidget.setObjectName(u"formLayoutWidget")
-        self.formLayoutWidget.setGeometry(QRect(10, 10, 341, 114))
+        self.formLayoutWidget.setGeometry(QRect(10, 10, 211, 121))
         self.formLayout = QFormLayout(self.formLayoutWidget)
         self.formLayout.setObjectName(u"formLayout")
+        self.formLayout.setSizeConstraint(QLayout.SetFixedSize)
+        self.formLayout.setFieldGrowthPolicy(QFormLayout.AllNonFixedFieldsGrow)
         self.formLayout.setContentsMargins(0, 0, 0, 0)
         self.label_3 = QLabel(self.formLayoutWidget)
         self.label_3.setObjectName(u"label_3")
 
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_3)
-
-        self.label_4 = QLabel(self.formLayoutWidget)
-        self.label_4.setObjectName(u"label_4")
-
-        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.label_4)
+        self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_3)
 
         self.label_5 = QLabel(self.formLayoutWidget)
         self.label_5.setObjectName(u"label_5")
 
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_5)
-
-        self.label_6 = QLabel(self.formLayoutWidget)
-        self.label_6.setObjectName(u"label_6")
-
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.label_6)
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_5)
 
         self.label_7 = QLabel(self.formLayoutWidget)
         self.label_7.setObjectName(u"label_7")
 
-        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_7)
-
-        self.label_8 = QLabel(self.formLayoutWidget)
-        self.label_8.setObjectName(u"label_8")
-
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.label_8)
+        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_7)
 
         self.label_9 = QLabel(self.formLayoutWidget)
         self.label_9.setObjectName(u"label_9")
 
-        self.formLayout.setWidget(4, QFormLayout.LabelRole, self.label_9)
+        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_9)
+
+        self.label_4 = QLabel(self.formLayoutWidget)
+        self.label_4.setObjectName(u"label_4")
+
+        self.formLayout.setWidget(0, QFormLayout.FieldRole, self.label_4)
+
+        self.label_6 = QLabel(self.formLayoutWidget)
+        self.label_6.setObjectName(u"label_6")
+
+        self.formLayout.setWidget(1, QFormLayout.FieldRole, self.label_6)
+
+        self.label_8 = QLabel(self.formLayoutWidget)
+        self.label_8.setObjectName(u"label_8")
+
+        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.label_8)
 
         self.label_10 = QLabel(self.formLayoutWidget)
         self.label_10.setObjectName(u"label_10")
 
-        self.formLayout.setWidget(4, QFormLayout.FieldRole, self.label_10)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
-
-        self.formLayout.setItem(0, QFormLayout.FieldRole, self.verticalSpacer)
+        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.label_10)
 
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QWidget()
@@ -99,6 +98,7 @@ class Ui_Dialog(object):
         self.verticalLayoutWidget_2.setGeometry(QRect(10, 10, 531, 191))
         self.verticalLayout_2 = QVBoxLayout(self.verticalLayoutWidget_2)
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setSizeConstraint(QLayout.SetMinimumSize)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
         self.label_12 = QLabel(self.verticalLayoutWidget_2)
         self.label_12.setObjectName(u"label_12")
@@ -142,9 +142,12 @@ class Ui_Dialog(object):
         self.verticalLayout.addWidget(self.tabWidget)
 
 
+        self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
+
+
         self.retranslateUi(Dialog)
 
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -154,12 +157,12 @@ class Ui_Dialog(object):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"O tw\u00f3rcach", None))
         self.label_2.setText("")
         self.label_3.setText(QCoreApplication.translate("Dialog", u"Bartosz Puka", None))
-        self.label_4.setText(QCoreApplication.translate("Dialog", u"Programista", None))
         self.label_5.setText(QCoreApplication.translate("Dialog", u"Pawe\u0142 Feliks", None))
-        self.label_6.setText(QCoreApplication.translate("Dialog", u"Programista", None))
         self.label_7.setText(QCoreApplication.translate("Dialog", u"\u0141ukasz Pawlak", None))
-        self.label_8.setText(QCoreApplication.translate("Dialog", u"Programista", None))
         self.label_9.setText(QCoreApplication.translate("Dialog", u"Piotr Waczak", None))
+        self.label_4.setText(QCoreApplication.translate("Dialog", u"Programista", None))
+        self.label_6.setText(QCoreApplication.translate("Dialog", u"Programista", None))
+        self.label_8.setText(QCoreApplication.translate("Dialog", u"Programista", None))
         self.label_10.setText(QCoreApplication.translate("Dialog", u"Programista", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("Dialog", u"Sk\u0142ad developerski", None))
         self.label_12.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><a href=\"https://pypi.org/project/Faker/\"><span style=\" text-decoration: underline; color:#0000ff;\">Faker</span></a></p></body></html>", None))
