@@ -1,3 +1,21 @@
+"""
+.. uml::
+    :scale: 75 %
+
+    @startuml
+    @startsalt
+    {^"<b>Historia zmian</b>"
+    {SI
+    Dodanie brakującego widoku historii.
+    Dodanie możliwości wygenerowania archiwalnych rachunków
+    Dodano widok historii zmian w Gui.
+    Dodano możliwość generowania historii rozwoju do JSON
+    }
+    }
+    @endsalt
+    @enduml
+"""
+
 import json
 import os
 from PySide2.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
@@ -15,7 +33,7 @@ class HistoryDialog(QWidget, Ui_Dialog):
         self.populate_history()
 
     def open_file_with_history(self):
-        with open(os.path.join(STATIC, 'history.json'), 'r') as file:
+        with open(os.path.join(STATIC, "history.json"), "r") as file:
             self.history_lst = json.loads(file.read())
 
     def populate_history(self):
@@ -25,5 +43,5 @@ class HistoryDialog(QWidget, Ui_Dialog):
         for i in range(len(self.history_lst)):
             created_date = self.history_lst[i][0]
             item = QTableWidgetItem(str(self.history_lst[i][1]))
-            item.setToolTip(f'Dodano w dniu {created_date}')
+            item.setToolTip(f"Dodano w dniu {created_date}")
             self.tableWidget.setItem(i, 0, item)
