@@ -62,6 +62,17 @@ class User:
     def __repr__(self):
         return f"User: {self.first_name} {self.last_name}"
 
+    def to_json(self):
+        return {
+            'first_name': self.first_name,
+            'last_name': self.last_name,
+            'company_name': self.company_name,
+            'street': self.street,
+            'city': self.city,
+            'zip_code': self.zip_code,
+            'nip': self.nip,
+            'account_number': self.account_number
+        }
 
 @mapper_registry.mapped
 class Contractor:
@@ -150,11 +161,8 @@ class Bill:
     contractor_id = Column(ForeignKey("contractor.id"))
     services = relationship("ServiceAssociation")
 
-
-
-
     def __repr__(self):
-        return f"{self.signature} - {self.amount}"
+        return f"{self.name} - {self.amount}"
 
 
 @contextmanager

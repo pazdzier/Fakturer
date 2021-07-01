@@ -21,6 +21,7 @@ from .widgets.service import ServicesDialog
 from .widgets.about import AboutDialog
 from .widgets.calendar import CalendarDialog
 from .widgets.history import HistoryDialog
+from .widgets.invoices import InvoicesDialog
 from .widgets.licence import LicenceDialog
 from .designer.main_window import Ui_MainWindow
 
@@ -59,6 +60,7 @@ class MainWindow(QMainWindow):
         self.ui.addService.triggered.connect(self.open_new_service_dialog)
         self.ui.actionLicence.triggered.connect(self.open_licence_widget)
         self.ui.actionHistory.triggered.connect(self.open_history_widget)
+        self.ui.menu_invoices.triggered.connect(self.open_invoices_widget)
         self.ui.contractor_to_file.triggered.connect(self.export_contractors_to_file)
         self.ui.contractor_from_file.triggered.connect(self.import_contractors_from_file)
         self.show()
@@ -247,6 +249,10 @@ class MainWindow(QMainWindow):
 
     def open_history_widget(self):
         self.nd = HistoryDialog(self)
+        self.nd.show()
+
+    def open_invoices_widget(self):
+        self.nd = InvoicesDialog(self)
         self.nd.show()
 
     def export_contractors_to_file(self):
