@@ -243,13 +243,17 @@ p, li { white-space: pre-wrap; }
     <addaction name="user_to_file"/>
     <addaction name="user_from_file"/>
    </widget>
-   <widget class="QMenu" name="menuHistoria_Faktur">
+   <widget class="QMenu" name="invoices">
     <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="tearOffEnabled">
      <bool>false</bool>
     </property>
     <property name="title">
      <string>Historia Faktur</string>
     </property>
+    <addaction name="menu_invoices"/>
    </widget>
    <widget class="QMenu" name="menuO_programie">
     <property name="layoutDirection">
@@ -274,7 +278,7 @@ p, li { white-space: pre-wrap; }
    <addaction name="menuOMnie"/>
    <addaction name="menuKontrahenci"/>
    <addaction name="menuUs_ugi"/>
-   <addaction name="menuHistoria_Faktur"/>
+   <addaction name="invoices"/>
    <addaction name="menuO_programie"/>
   </widget>
   <action name="addContractor">
@@ -385,6 +389,11 @@ p, li { white-space: pre-wrap; }
    </property>
    <property name="text">
     <string>Import z pliku</string>
+   </property>
+  </action>
+  <action name="menu_invoices">
+   <property name="text">
+    <string>Wyświetl</string>
    </property>
   </action>
  </widget>
