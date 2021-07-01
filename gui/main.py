@@ -1,3 +1,41 @@
+"""
+.. uml::
+    :scale: 60 %
+
+    @startuml
+    @startsalt
+    {^" Fakturer 2.0 "
+    {+
+    {* Moje dane | Kontrahenci | Usługi| Historia Faktur | O programie
+    }|*
+    --|*
+    .|{
+    Wybierz kontrahenta
+    {SI
+    Wiese S.A.
+    Gabinety Miksza i syn s.c.
+    Stowarzyszenie Szara-Danieluk Sp. z o.o
+    .
+    .} | .
+    Wybierz usługę
+    {S-
+    Świadczenie usług programistycznych zgod
+    .
+    .
+    .
+    .}
+    }
+    .|{
+    Ilość|j.m.|Cena jednostkowa [zł, gr]|Termin płatności|[czw. lip 15 2021]
+    ^1 ^ | ^szt.^ | ^1.0              ^ |.|[ Generuj fakturę]|
+    }
+    }
+    }
+    @endsalt
+    @enduml
+
+"""
+
 # import logging
 import os
 from datetime import date
@@ -5,13 +43,7 @@ from PySide2.QtCore import QDate, QTimer
 from PySide2.QtWidgets import QMainWindow, QMessageBox
 from sqlalchemy import extract
 from sqlalchemy.sql.expression import desc
-from database.models import (
-    Bill,
-    User,
-    Contractor,
-    Service,
-    ServiceAssociation
-)
+from database.models import Bill, User, Contractor, Service, ServiceAssociation
 from utils.converters import bill_name, bill_file_name, numtoword
 from utils.file_handlers import save_to_json, save_from_json
 from utils.pdf_creator import create_invoice_pdf
@@ -62,13 +94,17 @@ class MainWindow(QMainWindow):
         self.ui.actionHistory.triggered.connect(self.open_history_widget)
         self.ui.menu_invoices.triggered.connect(self.open_invoices_widget)
         self.ui.contractor_to_file.triggered.connect(self.export_contractors_to_file)
-        self.ui.contractor_from_file.triggered.connect(self.import_contractors_from_file)
+        self.ui.contractor_from_file.triggered.connect(
+            self.import_contractors_from_file
+        )
         self.show()
 
     def self_contractor_changed(self, curr):
         try:
             contractor_id = curr.data(1)
-            contractor = self.session.query(Contractor).filter_by(id=contractor_id).first()
+            contractor = (
+                self.session.query(Contractor).filter_by(id=contractor_id).first()
+            )
             self.CHOSEN_CONTRACTOR = contractor
             self.ui.editContractor.setEnabled(True)
             self.ui.delContractor.setEnabled(True)
@@ -78,7 +114,7 @@ class MainWindow(QMainWindow):
             pass
 
     def service_item_changed(self, curr):
-        """ curr.data(1) zwraca id rekordu z bazy danych
+        """curr.data(1) zwraca id rekordu z bazy danych
         cyfra 1 to tylko numer roli jaką przypisałem do elementu listy
         """
 
@@ -120,15 +156,21 @@ class MainWindow(QMainWindow):
             service.setData(1, item.id)
 
     def open_invoice_preview_file(self):
-        with open(os.path.join(os.getcwd(), "static", 'invoice_preview.html'), 'r', encoding='utf8') as file:
+        with open(
+            os.path.join(os.getcwd(), "static", "invoice_preview.html"),
+            "r",
+            encoding="utf8",
+        ) as file:
             self.INVOICE_PREVIEW = file.read()
 
     def monitor_state(self):
-        if all([
-            self.CHOSEN_SERVICE,
-            self.CHOSEN_CONTRACTOR,
-            self.session.query(User).order_by(desc("id")).first()
-        ]):
+        if all(
+            [
+                self.CHOSEN_SERVICE,
+                self.CHOSEN_CONTRACTOR,
+                self.session.query(User).order_by(desc("id")).first(),
+            ]
+        ):
             self.ui.generateInvoice.setEnabled(True)
             bills_count = (
                 self.session.query(Bill).filter(
@@ -139,13 +181,15 @@ class MainWindow(QMainWindow):
                 contractor=self.CHOSEN_CONTRACTOR,
                 user=self.session.query(User).order_by(desc("id")).first(),
                 service=self.CHOSEN_SERVICE,
-                payment_date=self.DATE.toString('yyyy-MM-dd'),
-                document_date=date.today().strftime('%Y-%m-%d'),
+                payment_date=self.DATE.toString("yyyy-MM-dd"),
+                document_date=date.today().strftime("%Y-%m-%d"),
                 invoice_name=bill_name(bills_count),
-                selling_date=date.today().strftime('%B %Y'),
+                selling_date=date.today().strftime("%B %Y"),
                 partial_amount=self.ui.amountBox.value(),
                 full_amount=self.ui.amountBox.value() * self.ui.volumeBox.value(),
-                full_amount_to_word=numtoword(self.ui.amountBox.value() * self.ui.volumeBox.value()),
+                full_amount_to_word=numtoword(
+                    self.ui.amountBox.value() * self.ui.volumeBox.value()
+                ),
                 volume=self.ui.volumeBox.value(),
             )
             self.ui.textBrowser.clear()
@@ -206,7 +250,7 @@ class MainWindow(QMainWindow):
             contractor=contractor,
             payment_date=self.DATE.toPython(),
             name=bill_name(bills_count),
-            amount=self.ui.amountBox.value() * self.ui.volumeBox.value()
+            amount=self.ui.amountBox.value() * self.ui.volumeBox.value(),
         )
         assoc = ServiceAssociation(
             partial_amount=self.ui.amountBox.value(),
@@ -221,7 +265,9 @@ class MainWindow(QMainWindow):
 
         create_invoice_pdf(bill_file_name(bill_name(bills_count)), bill)
 
-        QMessageBox.information(self, "Sukces", "Faktura została wygenerowana prawidłowo.")
+        QMessageBox.information(
+            self, "Sukces", "Faktura została wygenerowana prawidłowo."
+        )
 
     def open_edit_user_dialog(self):
         self.nd = UserDialog(self)

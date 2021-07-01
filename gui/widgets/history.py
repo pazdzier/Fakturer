@@ -1,16 +1,18 @@
 """
 .. uml::
-    :scale: 75 %
+    :scale: 60 %
 
     @startuml
     @startsalt
-    {^"<b>Historia zmian</b>"
+    {^" Historia zmian "
+    . |
     {SI
     Dodanie brakującego widoku historii.
     Dodanie możliwości wygenerowania archiwalnych rachunków
     Dodano widok historii zmian w Gui.
     Dodano możliwość generowania historii rozwoju do JSON
     }
+    | .
     }
     @endsalt
     @enduml
