@@ -1,4 +1,4 @@
-# -*- coding: cp1250 -*-
+# -*- coding: utf-8 -*-
 # pylint: disable=W1309
 """
 .. note::
@@ -7,8 +7,8 @@
 
 .. note::
 
-    Czcionka Verdana to czcionka w³asnoœciowa (Microsoft). Odpowiednikiem dla LINUX
-    jest DejaVuSans. Jesli Chcesz siê upewniæ, czy czcionka DejaVuSans jets dostêpna
+    Czcionka Verdana to czcionka wÅ‚asnoÅ›ciowa (Microsoft). Odpowiednikiem dla LINUX
+    jest DejaVuSans. Jesli Chcesz siÄ™ upewniÄ‡, czy czcionka DejaVuSans jets dostÄ™pna
     to komenda: fc-list | grep "DejaVu Sans"
 
 """
@@ -39,7 +39,7 @@ except TTFError:
     CHOSENFONT = 'DejaVuSans'
 
 def create_invoice_pdf(invoice_name: str, bill):
-    """Funkcja tworzy fakturê"""
+    """Funkcja tworzy fakturÄ™"""
 
     style_right = PS(name="", fontName=CHOSENFONT, fontSize=8, alignment=TA_RIGHT)
     style_left = PS(name="", fontName=CHOSENFONT, fontSize=8, alignment=TA_LEFT)
@@ -54,7 +54,7 @@ def create_invoice_pdf(invoice_name: str, bill):
     )
     invoice.append(Spacer(1, 8))
     table = Table(
-        [[PH("Sprzedawca:", style_left), PH(f"Data sprzeda¿y: {bill.created.strftime('%B %Y').lower()}", style_right)]],
+        [[PH("Sprzedawca:", style_left), PH(f"Data sprzedaÅ¼y: {bill.created.strftime('%B %Y').lower()}", style_right)]],
         colWidths=[8.4 * cm, 8.4 * cm],
     )
     invoice.append(table)
@@ -123,11 +123,11 @@ def create_invoice_pdf(invoice_name: str, bill):
     data = [
         [
             PH(r"<b>L.p.</b>", style_justify),
-            PH(r"<b>Nazwa towaru/us³ugi</b>", style_justify),
-            PH(r"<b>iloœæ</b>", style_justify),
+            PH(r"<b>Nazwa towaru/usÅ‚ugi</b>", style_justify),
+            PH(r"<b>iloÅ›Ä‡</b>", style_justify),
             PH(r"<b>j.m</b>", style_justify),
-            PH(r"<b>Cena jednostkowa [z³,gr]</b>", style_justify),
-            PH(r"<b>Wartoœæ [z³,gr]</b>", style_justify),
+            PH(r"<b>Cena jednostkowa [zÅ‚,gr]</b>", style_justify),
+            PH(r"<b>WartoÅ›Ä‡ [zÅ‚,gr]</b>", style_justify),
         ]
     ]
     for i in bill.services:
@@ -140,8 +140,8 @@ def create_invoice_pdf(invoice_name: str, bill):
                 ),
                 PH(f"{i.volume}", style_justify),
                 PH(f"{i.measure}", style_justify),
-                PH(f"{round(i.partial_amount, 2)}" + " z³", style_justify),
-                PH(f"{round(i.full_amount, 2)}" + " z³", style_justify),
+                PH(f"{round(i.partial_amount, 2)}" + " zÅ‚", style_justify),
+                PH(f"{round(i.full_amount, 2)}" + " zÅ‚", style_justify),
             ],
         )
 
@@ -152,7 +152,7 @@ def create_invoice_pdf(invoice_name: str, bill):
             "",
             "",
             PH("Razem:", style_justify),
-            PH(f"{round(bill.amount, 2)}" + " z³", style_justify),
+            PH(f"{round(bill.amount, 2)}" + " zÅ‚", style_justify),
         ],
     ]
     table = Table(
@@ -171,11 +171,11 @@ def create_invoice_pdf(invoice_name: str, bill):
     )
     invoice.append(table)
     invoice.append(Spacer(1, 25))
-    PH(f"s³ownie: {{ }}", style_center)
+    PH(f"sÅ‚ownie: {{ }}", style_center)
     table = Table(
         [
             [
-                f"Nale¿noœæ ogó³em: {round(bill.amount, 2)} z³",
+                f"NaleÅ¼noÅ›Ä‡ ogÃ³Å‚em: {round(bill.amount, 2)} zÅ‚",
                 f"{numtoword(round(bill.amount, 2))}",
             ]
         ],
@@ -203,8 +203,8 @@ def create_invoice_pdf(invoice_name: str, bill):
     )
     invoice.append(table)
     invoice.append(Spacer(1, 10))
-    invoice.append(PH("P³atnoœæ: przelew", style_left))
-    invoice.append(PH(f"Termin zap³aty do: {bill.payment_date}", style_left))
+    invoice.append(PH("PÅ‚atnoÅ›Ä‡: przelew", style_left))
+    invoice.append(PH(f"Termin zapÅ‚aty do: {bill.payment_date}", style_left))
     invoice.append(Spacer(1, 32))
     data = [
         [
@@ -212,8 +212,8 @@ def create_invoice_pdf(invoice_name: str, bill):
             PH("_" * 49, style6),
         ],
         [
-            PH("podpis osoby upowa¿nionej do odbioru Rachunku", style5),
-            PH("podpis osoby upowa¿nionej do wystawienia Rachunku", style6),
+            PH("podpis osoby upowaÅ¼nionej do odbioru Rachunku", style5),
+            PH("podpis osoby upowaÅ¼nionej do wystawienia Rachunku", style6),
         ],
     ]
     invoice.append(Table(data, colWidths=[8.4 * cm, 8.4 * cm]))
