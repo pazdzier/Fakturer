@@ -12,7 +12,8 @@
 #
 import os
 import sys
-#sys.path.insert(0, os.path.abspath('.'))
+from sphinx.ext import autodoc
+
 sys.path.insert(0, os.path.abspath('..'))
 sys.path.insert(0, os.path.abspath('../..'))
 
@@ -27,6 +28,23 @@ release = '0.1'
 
 
 # -- General configuration ---------------------------------------------------
+
+# Class to display docstrings in docs without info like class methods etc.
+# good for manuals for end-users.
+# https://stackoverflow.com/questions/7825263/including-docstring-in-sphinx-documentation
+
+class SimpleDocumenter(autodoc.MethodDocumenter):
+    objtype = "simple"
+
+    #do not indent the content
+    content_indent = ""
+
+    #do not add a header to the docstring
+    def add_directive_header(self, sig):
+        pass
+
+def setup(app):
+    app.add_autodocumenter(SimpleDocumenter)
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
