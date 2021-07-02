@@ -23,6 +23,28 @@ class UserDialog(QWidget, Ui_Dialog):
         input_validator = QRegExpValidator(reg_ex, self.account_number)
         self.account_number.setValidator(input_validator)
 
+    @classmethod
+    def uml_graph(cls):
+        """
+        .. uml::
+            :scale: 60 %
+
+            @startuml
+            @startsalt
+            {^" Edycja danych użytkownika "
+            .|Imię          |"Mariusz                         "|.
+            .|Nazwisko      |"Szlaga                          "|.
+            .|Nazwa         |"TACO                            "|.
+            .|NIP           |"627-04-79-369                   "|.
+            .|Ulica         |"al. Cmentarna 738               "|.
+            .|Miasto        |"Lubliniec                       "|.
+            .|Kod pocztowy  |"29-930                          "|.
+            .|Numer rachunku|"86 4283 5462 9279 5886 3587 5690"|.
+            }
+            @endsalt
+            @enduml
+        """
+
     def populate_data(self):
 
         try:
