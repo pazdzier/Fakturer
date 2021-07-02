@@ -1,41 +1,3 @@
-"""
-.. uml::
-    :scale: 60 %
-
-    @startuml
-    @startsalt
-    {^" Fakturer 2.0 "
-    {+
-    {* Moje dane | Kontrahenci | Usługi| Historia Faktur | O programie
-    }|*
-    --|*
-    .|{
-    Wybierz kontrahenta
-    {SI
-    Wiese S.A.
-    Gabinety Miksza i syn s.c.
-    Stowarzyszenie Szara-Danieluk Sp. z o.o
-    .
-    .} | .
-    Wybierz usługę
-    {S-
-    Świadczenie usług programistycznych zgod
-    .
-    .
-    .
-    .}
-    }
-    .|{
-    Ilość|j.m.|Cena jednostkowa [zł, gr]|Termin płatności|[czw. lip 15 2021]
-    ^1 ^ | ^szt.^ | ^1.0              ^ |.|[ Generuj fakturę]|
-    }
-    }
-    }
-    @endsalt
-    @enduml
-
-"""
-
 # import logging
 import os
 from datetime import date
@@ -98,6 +60,45 @@ class MainWindow(QMainWindow):
             self.import_contractors_from_file
         )
         self.show()
+
+    @classmethod
+    def uml_graph(cls):
+        """
+        .. uml::
+            :scale: 60 %
+
+            @startuml
+            @startsalt
+            {^" Fakturer 2.0 "
+            {+
+            {* Moje dane | Kontrahenci | Usługi| Historia Faktur | O programie
+            }|*
+            --|*
+            .|{
+            Wybierz kontrahenta
+            {SI
+            Wiese S.A.
+            Gabinety Miksza i syn s.c.
+            Stowarzyszenie Szara-Danieluk Sp. z o.o
+            .
+            .} | .
+            Wybierz usługę
+            {S-
+            Świadczenie usług programistycznych zgod
+            .
+            .
+            .
+            .}
+            }
+            .|{
+            Ilość|j.m.|Cena jednostkowa [zł, gr]|Termin płatności|[czw. lip 15 2021]
+            ^1 ^ | ^szt.^ | ^1.0              ^ |.|[ Generuj fakturę]|
+            }
+            }
+            }
+            @endsalt
+            @enduml
+        """
 
     def self_contractor_changed(self, curr):
         try:
