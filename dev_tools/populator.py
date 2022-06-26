@@ -4,7 +4,7 @@
 
 """
 from datetime import date
-from random import randint
+from random import randint, choice
 from database.models import (
     session_manager,
     engine,
@@ -62,7 +62,8 @@ def fake_service():
         service = Service(
             name=f"Świadczenie usług programistycznych zgodnie z umową z \
 dnia {date.today().strftime('%d.%m.%Y')}",
-            amount=2450
+            amount=2450,
+            percentage=choice(['17%', '15%', '14%', '12,5%', '12%', '10%', '8,5%', '5,5%', '3%'])
         )
         session.add(service)
         print("Dodano usługę")

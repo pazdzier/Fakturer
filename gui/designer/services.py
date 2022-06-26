@@ -17,7 +17,7 @@ class Ui_Dialog(object):
     def setupUi(self, Dialog):
         if not Dialog.objectName():
             Dialog.setObjectName(u"Dialog")
-        Dialog.resize(533, 337)
+        Dialog.resize(532, 341)
         self.gridLayout_3 = QGridLayout(Dialog)
         self.gridLayout_3.setObjectName(u"gridLayout_3")
         self.gridLayout_2 = QGridLayout()
@@ -75,51 +75,70 @@ class Ui_Dialog(object):
 
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
-        self.label_3 = QLabel(Dialog)
-        self.label_3.setObjectName(u"label_3")
-
-        self.gridLayout.addWidget(self.label_3, 2, 1, 1, 1)
-
         self.volumeBox = QSpinBox(Dialog)
         self.volumeBox.setObjectName(u"volumeBox")
         self.volumeBox.setEnabled(False)
         self.volumeBox.setMinimum(1)
         self.volumeBox.setMaximum(1)
 
-        self.gridLayout.addWidget(self.volumeBox, 3, 0, 1, 1)
-
-        self.amountBox = QDoubleSpinBox(Dialog)
-        self.amountBox.setObjectName(u"amountBox")
-        self.amountBox.setMinimum(1.000000000000000)
-        self.amountBox.setMaximum(99999.990000000005239)
-
-        self.gridLayout.addWidget(self.amountBox, 3, 3, 1, 1)
+        self.gridLayout.addWidget(self.volumeBox, 4, 0, 1, 1)
 
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
 
         self.gridLayout.addWidget(self.label_2, 2, 0, 1, 1)
 
-        self.buttonBox = QDialogButtonBox(Dialog)
-        self.buttonBox.setObjectName(u"buttonBox")
-        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+        self.label_3 = QLabel(Dialog)
+        self.label_3.setObjectName(u"label_3")
 
-        self.gridLayout.addWidget(self.buttonBox, 5, 3, 1, 1)
+        self.gridLayout.addWidget(self.label_3, 2, 1, 1, 1)
 
         self.label_4 = QLabel(Dialog)
         self.label_4.setObjectName(u"label_4")
 
         self.gridLayout.addWidget(self.label_4, 2, 3, 1, 1)
 
+        self.buttonBox = QDialogButtonBox(Dialog)
+        self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+
+        self.gridLayout.addWidget(self.buttonBox, 6, 3, 1, 1)
+
         self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
-        self.gridLayout.addItem(self.horizontalSpacer_2, 4, 3, 1, 1)
+        self.gridLayout.addItem(self.horizontalSpacer_2, 5, 3, 1, 1)
 
         self.measureBox = QComboBox(Dialog)
         self.measureBox.addItem("")
         self.measureBox.setObjectName(u"measureBox")
 
-        self.gridLayout.addWidget(self.measureBox, 3, 1, 1, 1)
+        self.gridLayout.addWidget(self.measureBox, 4, 1, 1, 1)
+
+        self.amountBox = QDoubleSpinBox(Dialog)
+        self.amountBox.setObjectName(u"amountBox")
+        self.amountBox.setMinimum(1.000000000000000)
+        self.amountBox.setMaximum(99999.990000000005239)
+
+        self.gridLayout.addWidget(self.amountBox, 4, 3, 1, 1)
+
+        self.percentageBox = QComboBox(Dialog)
+        self.percentageBox.addItem("")
+        self.percentageBox.addItem("")
+        self.percentageBox.addItem("")
+        self.percentageBox.addItem("")
+        self.percentageBox.addItem("")
+        self.percentageBox.addItem("")
+        self.percentageBox.addItem("")
+        self.percentageBox.addItem("")
+        self.percentageBox.addItem("")
+        self.percentageBox.setObjectName(u"percentageBox")
+
+        self.gridLayout.addWidget(self.percentageBox, 4, 2, 1, 1)
+
+        self.label_5 = QLabel(Dialog)
+        self.label_5.setObjectName(u"label_5")
+
+        self.gridLayout.addWidget(self.label_5, 2, 2, 1, 1)
 
 
         self.verticalLayout.addLayout(self.gridLayout)
@@ -141,10 +160,21 @@ class Ui_Dialog(object):
         self.label.setText(QCoreApplication.translate("Dialog", u"Nazwa us\u0142ugi", None))
         self.label_6.setText(QCoreApplication.translate("Dialog", u"znak\u00f3w:", None))
         self.char_limit.setText(QCoreApplication.translate("Dialog", u"160", None))
-        self.label_3.setText(QCoreApplication.translate("Dialog", u"j.m.", None))
         self.label_2.setText(QCoreApplication.translate("Dialog", u"Ilo\u015b\u0107", None))
+        self.label_3.setText(QCoreApplication.translate("Dialog", u"j.m.", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Cena jednostkowa [z\u0142, gr]", None))
         self.measureBox.setItemText(0, QCoreApplication.translate("Dialog", u"szt.", None))
 
+        self.percentageBox.setItemText(0, QCoreApplication.translate("Dialog", u"17%", None))
+        self.percentageBox.setItemText(1, QCoreApplication.translate("Dialog", u"15%", None))
+        self.percentageBox.setItemText(2, QCoreApplication.translate("Dialog", u"14%", None))
+        self.percentageBox.setItemText(3, QCoreApplication.translate("Dialog", u"12,5%", None))
+        self.percentageBox.setItemText(4, QCoreApplication.translate("Dialog", u"12%", None))
+        self.percentageBox.setItemText(5, QCoreApplication.translate("Dialog", u"10%", None))
+        self.percentageBox.setItemText(6, QCoreApplication.translate("Dialog", u"8,5%", None))
+        self.percentageBox.setItemText(7, QCoreApplication.translate("Dialog", u"5,5%", None))
+        self.percentageBox.setItemText(8, QCoreApplication.translate("Dialog", u"3%", None))
+
+        self.label_5.setText(QCoreApplication.translate("Dialog", u"Stawka rycza\u0142tu", None))
     # retranslateUi
 

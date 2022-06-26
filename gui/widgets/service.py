@@ -23,7 +23,8 @@ class ServicesDialog(QWidget, Ui_Dialog):
         service = self.parent.CHOSEN_SERVICE
         self.serviceEdit.insertPlainText(service.name)
         self.amountBox.setValue(service.amount)
-
+        self.percentageBox.setCurrentIndex(self.percentageBox.findText(service.percentage))
+        
     def txt_input_changed(self):
         def characters_left():
             result = 160 - int(len(self.serviceEdit.toPlainText()))
@@ -39,7 +40,8 @@ class ServicesDialog(QWidget, Ui_Dialog):
 
         service = Service(
             name=self.serviceEdit.toPlainText(),
-            amount=self.amountBox.value()
+            amount=self.amountBox.value(),
+            percentage=self.percentageBox.itemText(self.percentageBox.currentIndex())
         )
         if self.parent.CHOSEN_SERVICE:
             self.parent.CHOSEN_SERVICE.deleted = True

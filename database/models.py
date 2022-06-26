@@ -140,6 +140,7 @@ class Service:
     name = Column(String)
     amount = Column(Numeric(precision=2))
     deleted = Column(Boolean, default=False, nullable=False)
+    percentage = Column(String(3))
 
     def __str__(self):
         return f"{self.name}"
