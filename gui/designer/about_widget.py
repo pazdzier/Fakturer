@@ -55,40 +55,20 @@ class Ui_Dialog(object):
 
         self.formLayout.setWidget(0, QFormLayout.LabelRole, self.label_3)
 
-        self.label_5 = QLabel(self.formLayoutWidget)
-        self.label_5.setObjectName(u"label_5")
-
-        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_5)
-
-        self.label_7 = QLabel(self.formLayoutWidget)
-        self.label_7.setObjectName(u"label_7")
-
-        self.formLayout.setWidget(2, QFormLayout.LabelRole, self.label_7)
-
-        self.label_9 = QLabel(self.formLayoutWidget)
-        self.label_9.setObjectName(u"label_9")
-
-        self.formLayout.setWidget(3, QFormLayout.LabelRole, self.label_9)
-
         self.label_4 = QLabel(self.formLayoutWidget)
         self.label_4.setObjectName(u"label_4")
 
         self.formLayout.setWidget(0, QFormLayout.FieldRole, self.label_4)
 
+        self.label_5 = QLabel(self.formLayoutWidget)
+        self.label_5.setObjectName(u"label_5")
+
+        self.formLayout.setWidget(1, QFormLayout.LabelRole, self.label_5)
+
         self.label_6 = QLabel(self.formLayoutWidget)
         self.label_6.setObjectName(u"label_6")
 
         self.formLayout.setWidget(1, QFormLayout.FieldRole, self.label_6)
-
-        self.label_8 = QLabel(self.formLayoutWidget)
-        self.label_8.setObjectName(u"label_8")
-
-        self.formLayout.setWidget(2, QFormLayout.FieldRole, self.label_8)
-
-        self.label_10 = QLabel(self.formLayoutWidget)
-        self.label_10.setObjectName(u"label_10")
-
-        self.formLayout.setWidget(3, QFormLayout.FieldRole, self.label_10)
 
         self.tabWidget.addTab(self.tab_3, "")
         self.tab_4 = QWidget()
@@ -147,7 +127,7 @@ class Ui_Dialog(object):
 
         self.retranslateUi(Dialog)
 
-        self.tabWidget.setCurrentIndex(1)
+        self.tabWidget.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(Dialog)
@@ -156,14 +136,10 @@ class Ui_Dialog(object):
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"O tw\u00f3rcach", None))
         self.label_2.setText("")
-        self.label_3.setText(QCoreApplication.translate("Dialog", u"Bartosz Puka", None))
-        self.label_5.setText(QCoreApplication.translate("Dialog", u"Pawe\u0142 Feliks", None))
-        self.label_7.setText(QCoreApplication.translate("Dialog", u"\u0141ukasz Pawlak", None))
-        self.label_9.setText(QCoreApplication.translate("Dialog", u"Piotr Waczak", None))
+        self.label_3.setText(QCoreApplication.translate("Dialog", u"Piotr Warczak", None))
         self.label_4.setText(QCoreApplication.translate("Dialog", u"Programista", None))
+        self.label_5.setText(QCoreApplication.translate("Dialog", u"Marcin Bia\u0142ow\u0105s", None))
         self.label_6.setText(QCoreApplication.translate("Dialog", u"Programista", None))
-        self.label_8.setText(QCoreApplication.translate("Dialog", u"Programista", None))
-        self.label_10.setText(QCoreApplication.translate("Dialog", u"Programista", None))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_3), QCoreApplication.translate("Dialog", u"Sk\u0142ad developerski", None))
         self.label_12.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><a href=\"https://pypi.org/project/Faker/\"><span style=\" text-decoration: underline; color:#0000ff;\">Faker</span></a></p></body></html>", None))
         self.label_15.setText(QCoreApplication.translate("Dialog", u"<html><head/><body><p><a href=\"https://pypi.org/project/num2words/\"><span style=\" text-decoration: underline; color:#0000ff;\">num2words</span></a></p></body></html>", None))
