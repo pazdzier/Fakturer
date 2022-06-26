@@ -4,7 +4,7 @@
 
 """
 from datetime import date
-from random import randrange
+from random import randint
 from database.models import (
     session_manager,
     engine,
@@ -30,7 +30,7 @@ def fake_user():
             city=FAKER.city(),
             zip_code=FAKER.postcode(),
             nip=FAKER.nip(),
-            account_number=f"{randrange(1, 10**26)}",
+            account_number=f"{randint(10000000000000000000000000,99999999999999999999999999)}",
         )
         session.add(user)
         print(f"Użytkownik: {user.first_name} {user.last_name} został dodany")
