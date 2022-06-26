@@ -8,7 +8,7 @@ from sqlalchemy.sql.expression import desc
 from database.models import Bill, User, Contractor, Service, ServiceAssociation
 from utils.converters import bill_name, bill_file_name, numtoword
 from utils.file_handlers import save_to_json, save_from_json
-from utils.pdf_creator import create_invoice_pdf
+from utils.pdf_creator import create_invoice_pdf, RevenueEvidencePDF
 from .widgets.user import UserDialog
 from .widgets.contractor import ContractorDialog
 from .widgets.service import ServicesDialog
@@ -59,6 +59,7 @@ class MainWindow(QMainWindow):
         self.ui.contractor_from_file.triggered.connect(
             self.import_contractors_from_file
         )
+        self.ui.actionEvidence.triggered.connect(self.generate_evidence)
         self.show()
 
     @classmethod
@@ -311,3 +312,8 @@ class MainWindow(QMainWindow):
     def import_contractors_from_file(self):
         save_from_json(self, Contractor)
         self.populate_contractors()
+
+    def generate_evidence(self):
+        bills = self.session.query(Bill).filter_by(deleted=False)
+        with RevenueEvidencePDF(bills):
+            pass

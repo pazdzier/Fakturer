@@ -67,6 +67,8 @@ class Ui_MainWindow(object):
         self.user_from_file.setEnabled(False)
         self.menu_invoices = QAction(MainWindow)
         self.menu_invoices.setObjectName(u"menu_invoices")
+        self.actionEvidence = QAction(MainWindow)
+        self.actionEvidence.setObjectName(u"actionEvidence")
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
         self.centralwidget.setEnabled(True)
@@ -193,7 +195,7 @@ class Ui_MainWindow(object):
         MainWindow.setStatusBar(self.statusbar)
         self.menuBar = QMenuBar(MainWindow)
         self.menuBar.setObjectName(u"menuBar")
-        self.menuBar.setGeometry(QRect(0, 0, 1095, 31))
+        self.menuBar.setGeometry(QRect(0, 0, 1095, 21))
         self.menuKontrahenci = QMenu(self.menuBar)
         self.menuKontrahenci.setObjectName(u"menuKontrahenci")
         self.menuOMnie = QMenu(self.menuBar)
@@ -207,12 +209,15 @@ class Ui_MainWindow(object):
         self.menuO_programie.setLayoutDirection(Qt.LeftToRight)
         self.menuUs_ugi = QMenu(self.menuBar)
         self.menuUs_ugi.setObjectName(u"menuUs_ugi")
+        self.menuEwidencja_przychod_w = QMenu(self.menuBar)
+        self.menuEwidencja_przychod_w.setObjectName(u"menuEwidencja_przychod_w")
         MainWindow.setMenuBar(self.menuBar)
 
         self.menuBar.addAction(self.menuOMnie.menuAction())
         self.menuBar.addAction(self.menuKontrahenci.menuAction())
         self.menuBar.addAction(self.menuUs_ugi.menuAction())
         self.menuBar.addAction(self.invoices.menuAction())
+        self.menuBar.addAction(self.menuEwidencja_przychod_w.menuAction())
         self.menuBar.addAction(self.menuO_programie.menuAction())
         self.menuKontrahenci.addAction(self.addContractor_2)
         self.menuKontrahenci.addAction(self.editContractor)
@@ -230,6 +235,7 @@ class Ui_MainWindow(object):
         self.menuUs_ugi.addAction(self.addService)
         self.menuUs_ugi.addAction(self.editService)
         self.menuUs_ugi.addAction(self.delService)
+        self.menuEwidencja_przychod_w.addAction(self.actionEvidence)
 
         self.retranslateUi(MainWindow)
 
@@ -255,6 +261,7 @@ class Ui_MainWindow(object):
         self.user_to_file.setText(QCoreApplication.translate("MainWindow", u"Eksport do pliku", None))
         self.user_from_file.setText(QCoreApplication.translate("MainWindow", u"Import z pliku", None))
         self.menu_invoices.setText(QCoreApplication.translate("MainWindow", u"Wy\u015bwietl", None))
+        self.actionEvidence.setText(QCoreApplication.translate("MainWindow", u"Ewidencja przychod\u00f3w", None))
         self.label.setText(QCoreApplication.translate("MainWindow", u"Wybierz kontrahenta", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"Wybierz us\u0142ug\u0119", None))
         self.label_3.setText(QCoreApplication.translate("MainWindow", u"Termin p\u0142atno\u015bci", None))
@@ -268,30 +275,31 @@ class Ui_MainWindow(object):
         self.textBrowser.setHtml(QCoreApplication.translate("MainWindow", u"<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Witaj w aplikacji Fakturer - wygodnym narz\u0119dziu do automatyzacji wystawiania rachunk\u00f3w dla os\u00f3b b\u0119d\u0105cych na umowach b2b. </p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Przed wystawieniem pierwszej faktury:</p>\n"
-"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-"
-                        "right: 0px; -qt-list-indent: 1;\"><li style=\"\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">uzupe\u0142nij swoje dane w zak\u0142adce <span style=\" color:#0000ff;\">Moje dane</span> </li>\n"
-"<li style=\"\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">dodaj kontrahenta w zak\u0142ace <span style=\" color:#0000ff;\">Kontrahenci</span> </li>\n"
-"<li style=\"\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Wska\u017c rodzaj i ilo\u015b\u0107 wykonany us\u0142ug w zak\u0142adce <span style=\" color:#0000ff;\">Us\u0142ugi</span></li>\n"
-"<li style=\"\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Wska\u017c termin p\u0142atno\u015bci w pozycji <span style=\" color:#0000ff;\">Termin p\u0142atno\u015bc</span>i (domy\u015blnie "
-                        "ustawione jest 14 dni kalendarzowych)</li></ul>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
-"<"
-                        "p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px;\"><br /></p>\n"
-"<p align=\"right\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Dzi\u0119kujemy za wyb\u00f3r aplikacji Fakturer<br /><br />zesp\u00f3\u0142 developerski.</p></body></html>", None))
+"</style></head><body style=\" font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">Witaj w aplikacji Fakturer - wygodnym narz\u0119dziu do automatyzacji wystawiania rachunk\u00f3w dla os\u00f3b b\u0119d\u0105cych na umowach b2b. </span></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">Przed wystawieniem pierwszej fa"
+                        "ktury:</span></p>\n"
+"<ul style=\"margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;\"><li style=\" font-size:8pt;\" style=\" margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">uzupe\u0142nij swoje dane w zak\u0142adce <span style=\" color:#0000ff;\">Moje dane</span> </li>\n"
+"<li style=\" font-size:8pt;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">dodaj kontrahenta w zak\u0142ace <span style=\" color:#0000ff;\">Kontrahenci</span> </li>\n"
+"<li style=\" font-size:8pt;\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Wska\u017c rodzaj i ilo\u015b\u0107 wykonany us\u0142ug w zak\u0142adce <span style=\" color:#0000ff;\">Us\u0142ugi</span></li>\n"
+"<li style=\" font-size:8pt;\" style=\" margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-ind"
+                        "ent:0; text-indent:0px;\">Wska\u017c termin p\u0142atno\u015bci w pozycji <span style=\" color:#0000ff;\">Termin p\u0142atno\u015bc</span>i (domy\u015blnie ustawione jest 14 dni kalendarzowych)</li></ul>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -"
+                        "qt-block-indent:1; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:1; text-indent:0px; font-size:8pt;\"><br /></p>\n"
+"<p align=\"right\" style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:8pt;\">Dzi\u0119kujemy za wyb\u00f3r aplikacji Fakturer<br /><br />zesp\u00f3\u0142 developerski.</span></p></body></html>", None))
         self.menuKontrahenci.setTitle(QCoreApplication.translate("MainWindow", u"Kontrahenci", None))
         self.menuOMnie.setTitle(QCoreApplication.translate("MainWindow", u"Moje dane", None))
         self.invoices.setTitle(QCoreApplication.translate("MainWindow", u"Historia Faktur", None))
         self.menuO_programie.setTitle(QCoreApplication.translate("MainWindow", u"O programie", None))
         self.menuUs_ugi.setTitle(QCoreApplication.translate("MainWindow", u"Us\u0142ugi", None))
+        self.menuEwidencja_przychod_w.setTitle(QCoreApplication.translate("MainWindow", u"Narz\u0119dzia", None))
     # retranslateUi
 
