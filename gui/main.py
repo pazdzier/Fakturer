@@ -179,6 +179,7 @@ class MainWindow(QMainWindow):
                     extract("month", Bill.created) == QDate.currentDate().month()
                 )
             ).count()
+            full_amount = round(self.ui.amountBox.value() * self.ui.volumeBox.value(), 2)
             new_preview = self.INVOICE_PREVIEW.format(
                 contractor=self.CHOSEN_CONTRACTOR,
                 user=self.session.query(User).order_by(desc("id")).first(),
@@ -188,10 +189,8 @@ class MainWindow(QMainWindow):
                 invoice_name=bill_name(bills_count),
                 selling_date=date.today().strftime("%B %Y"),
                 partial_amount=self.ui.amountBox.value(),
-                full_amount=self.ui.amountBox.value() * self.ui.volumeBox.value(),
-                full_amount_to_word=numtoword(
-                    self.ui.amountBox.value() * self.ui.volumeBox.value()
-                ),
+                full_amount=full_amount,
+                full_amount_to_word=numtoword(full_amount),
                 volume=self.ui.volumeBox.value(),
             )
             self.ui.textBrowser.clear()
@@ -258,6 +257,7 @@ class MainWindow(QMainWindow):
             partial_amount=self.ui.amountBox.value(),
             full_amount=self.ui.amountBox.value() * self.ui.volumeBox.value(),
             volume=self.ui.volumeBox.value(),
+            measure=self.ui.measureBox.currentText()
         )
         assoc.service = service
         bill.services.append(assoc)

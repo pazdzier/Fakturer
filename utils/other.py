@@ -6,9 +6,9 @@ def perc_amounts_collector(bill) -> dict:
     result = {}
     for service in bill.services:
         if service.service.percentage in result:
-            result[service.service.percentage] += round(service.partial_amount, 2)
+            result[service.service.percentage] += round(service.full_amount, 2)
         else:
-            result[service.service.percentage] = round(service.partial_amount, 2)
+            result[service.service.percentage] = round(service.full_amount, 2)
     return result
 
 

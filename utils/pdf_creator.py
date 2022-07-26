@@ -187,7 +187,7 @@ def create_invoice_pdf(invoice_name: str, bill):
         [
             [
                 f"Należność ogółem: {round(bill.amount, 2)} zł",
-                f"{numtoword(round(bill.amount, 2))}",
+                PH(f"{numtoword(round(bill.amount, 2))}", style_center),
             ]
         ],
         colWidths=[6 * cm, 10.35 * cm],
