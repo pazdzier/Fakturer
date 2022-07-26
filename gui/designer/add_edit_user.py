@@ -16,8 +16,8 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
 from PySide6.QtWidgets import (QAbstractButton, QApplication, QDialog, QDialogButtonBox,
-    QFormLayout, QGridLayout, QLabel, QLineEdit,
-    QSizePolicy, QWidget)
+    QGridLayout, QLabel, QLineEdit, QSizePolicy,
+    QWidget)
 
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
@@ -31,96 +31,96 @@ class Ui_Dialog(object):
         Dialog.setSizePolicy(sizePolicy)
         self.gridLayout = QGridLayout(Dialog)
         self.gridLayout.setObjectName(u"gridLayout")
-        self.formLayout_2 = QFormLayout()
-        self.formLayout_2.setObjectName(u"formLayout_2")
+        self.gridLayout_2 = QGridLayout()
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
         self.label = QLabel(Dialog)
         self.label.setObjectName(u"label")
 
-        self.formLayout_2.setWidget(0, QFormLayout.LabelRole, self.label)
+        self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
 
         self.first_name = QLineEdit(Dialog)
         self.first_name.setObjectName(u"first_name")
 
-        self.formLayout_2.setWidget(0, QFormLayout.FieldRole, self.first_name)
+        self.gridLayout_2.addWidget(self.first_name, 0, 1, 1, 1)
 
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
 
-        self.formLayout_2.setWidget(1, QFormLayout.LabelRole, self.label_2)
+        self.gridLayout_2.addWidget(self.label_2, 1, 0, 1, 1)
 
         self.last_name = QLineEdit(Dialog)
         self.last_name.setObjectName(u"last_name")
 
-        self.formLayout_2.setWidget(1, QFormLayout.FieldRole, self.last_name)
+        self.gridLayout_2.addWidget(self.last_name, 1, 1, 1, 1)
 
         self.label_7 = QLabel(Dialog)
         self.label_7.setObjectName(u"label_7")
 
-        self.formLayout_2.setWidget(2, QFormLayout.LabelRole, self.label_7)
+        self.gridLayout_2.addWidget(self.label_7, 2, 0, 1, 1)
 
         self.company_name = QLineEdit(Dialog)
         self.company_name.setObjectName(u"company_name")
 
-        self.formLayout_2.setWidget(2, QFormLayout.FieldRole, self.company_name)
+        self.gridLayout_2.addWidget(self.company_name, 2, 1, 1, 1)
 
         self.label_8 = QLabel(Dialog)
         self.label_8.setObjectName(u"label_8")
 
-        self.formLayout_2.setWidget(3, QFormLayout.LabelRole, self.label_8)
+        self.gridLayout_2.addWidget(self.label_8, 3, 0, 1, 1)
 
         self.nip = QLineEdit(Dialog)
         self.nip.setObjectName(u"nip")
 
-        self.formLayout_2.setWidget(3, QFormLayout.FieldRole, self.nip)
+        self.gridLayout_2.addWidget(self.nip, 3, 1, 1, 1)
 
         self.label_3 = QLabel(Dialog)
         self.label_3.setObjectName(u"label_3")
 
-        self.formLayout_2.setWidget(4, QFormLayout.LabelRole, self.label_3)
+        self.gridLayout_2.addWidget(self.label_3, 4, 0, 1, 1)
 
         self.street = QLineEdit(Dialog)
         self.street.setObjectName(u"street")
 
-        self.formLayout_2.setWidget(4, QFormLayout.FieldRole, self.street)
+        self.gridLayout_2.addWidget(self.street, 4, 1, 1, 1)
 
         self.label_4 = QLabel(Dialog)
         self.label_4.setObjectName(u"label_4")
 
-        self.formLayout_2.setWidget(5, QFormLayout.LabelRole, self.label_4)
+        self.gridLayout_2.addWidget(self.label_4, 5, 0, 1, 1)
 
         self.city = QLineEdit(Dialog)
         self.city.setObjectName(u"city")
 
-        self.formLayout_2.setWidget(5, QFormLayout.FieldRole, self.city)
+        self.gridLayout_2.addWidget(self.city, 5, 1, 1, 1)
 
         self.label_5 = QLabel(Dialog)
         self.label_5.setObjectName(u"label_5")
 
-        self.formLayout_2.setWidget(6, QFormLayout.LabelRole, self.label_5)
+        self.gridLayout_2.addWidget(self.label_5, 6, 0, 1, 1)
 
         self.zip_code = QLineEdit(Dialog)
         self.zip_code.setObjectName(u"zip_code")
 
-        self.formLayout_2.setWidget(6, QFormLayout.FieldRole, self.zip_code)
+        self.gridLayout_2.addWidget(self.zip_code, 6, 1, 1, 1)
 
         self.label_6 = QLabel(Dialog)
         self.label_6.setObjectName(u"label_6")
 
-        self.formLayout_2.setWidget(7, QFormLayout.LabelRole, self.label_6)
+        self.gridLayout_2.addWidget(self.label_6, 7, 0, 1, 1)
 
         self.account_number = QLineEdit(Dialog)
         self.account_number.setObjectName(u"account_number")
 
-        self.formLayout_2.setWidget(7, QFormLayout.FieldRole, self.account_number)
+        self.gridLayout_2.addWidget(self.account_number, 7, 1, 1, 1)
 
         self.buttonBox = QDialogButtonBox(Dialog)
         self.buttonBox.setObjectName(u"buttonBox")
         self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
 
-        self.formLayout_2.setWidget(8, QFormLayout.FieldRole, self.buttonBox)
+        self.gridLayout_2.addWidget(self.buttonBox, 8, 1, 1, 1)
 
 
-        self.gridLayout.addLayout(self.formLayout_2, 0, 0, 1, 1)
+        self.gridLayout.addLayout(self.gridLayout_2, 0, 0, 1, 1)
 
 
         self.retranslateUi(Dialog)
