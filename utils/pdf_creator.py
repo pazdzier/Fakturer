@@ -12,8 +12,10 @@
     to komenda: fc-list | grep "DejaVu Sans"
 
 """
+import os
 from contextlib import ContextDecorator
 from decimal import Decimal
+import platform
 import subprocess
 from reportlab.lib.enums import TA_JUSTIFY, TA_RIGHT, TA_LEFT, TA_CENTER
 from reportlab.lib.pagesizes import A4, landscape
@@ -236,7 +238,11 @@ def create_invoice_pdf(invoice_name: str, bill):
         bottomMargin=18,
     )
     doc.build(invoice)
-    subprocess.Popen([f"{invoice_name}.pdf"], shell=True)
+    if platform.system() == 'Darwin':
+        invoice_name = os.path.join(os.getcwd(), f"{invoice_name}.pdf")
+        subprocess.call(['open', invoice_name])
+    else:
+        subprocess.Popen([f"{invoice_name}.pdf"], shell=True)
 
 
 class RevenueEvidencePDF(ContextDecorator):
@@ -356,8 +362,10 @@ class RevenueEvidencePDF(ContextDecorator):
         #        x = all_percs_dict(dicts_lst)
         #        self.page_summary(x)
         #        self.previous_page(dicts_lst_all)
-
-        self.previous_page(page_dict)
+        try:
+            self.previous_page(page_dict)
+        except UnboundLocalError:
+            pass
         page_dict = all_percs_dict(dicts_lst)
         dicts_lst = []
         self.page_summary(page_dict)
@@ -375,7 +383,11 @@ class RevenueEvidencePDF(ContextDecorator):
             bottomMargin=18,
         )
         doc.build(self.evidence)
-        subprocess.Popen([f"Ewidencja przychodów.pdf"], shell=True)
+        if platform.system() == 'Darwin':
+            invoice_name = os.path.join(os.getcwd(), "Ewidencja przychodów.pdf")
+            subprocess.call(['open', invoice_name])
+        else:
+            subprocess.Popen(["Ewidencja przychodów.pdf"], shell=True)
         return False
 
     def table_header(self):

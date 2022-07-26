@@ -315,5 +315,11 @@ class MainWindow(QMainWindow):
 
     def generate_evidence(self):
         bills = self.session.query(Bill).filter_by(deleted=False)
+        if not bills.count():
+            QMessageBox.warning(
+                self, "Błąd", "Brak istniejących faktur w systemie. \
+Wygenerowanie ewidencji przychodów jest obecnie niemożliwe."
+            )
+            return
         with RevenueEvidencePDF(bills):
             pass
