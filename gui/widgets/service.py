@@ -1,5 +1,5 @@
-from PySide2.QtCore import QObject, SIGNAL
-from PySide2.QtWidgets import QWidget
+from PySide6.QtCore import QObject, SIGNAL
+from PySide6.QtWidgets import QWidget
 from database.models import Service
 from gui.designer.services import Ui_Dialog
 

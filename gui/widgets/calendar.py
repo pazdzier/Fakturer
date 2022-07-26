@@ -1,5 +1,5 @@
 from datetime import date
-from PySide2.QtWidgets import QWidget
+from PySide6.QtWidgets import QWidget
 from gui.designer.calendar_widget import Ui_Dialog
 
 

@@ -1,7 +1,7 @@
 from sqlalchemy.sql.expression import desc
-from PySide2.QtCore import QRegExp
-from PySide2.QtGui import QRegExpValidator
-from PySide2.QtWidgets import QWidget, QMessageBox
+from PySide6.QtCore import QRegularExpression
+from PySide6.QtGui import QRegularExpressionValidator
+from PySide6.QtWidgets import QWidget, QMessageBox
 from database.models import User
 from utils.string_validators import (
     bank_account_validator,
@@ -19,8 +19,8 @@ class UserDialog(QWidget, Ui_Dialog):
         self.populate_data()
         self.buttonBox.accepted.connect(self.accept)
         self.buttonBox.rejected.connect(self.reject)
-        reg_ex = QRegExp(r"[\d{9}\s]*")
-        input_validator = QRegExpValidator(reg_ex, self.account_number)
+        reg_ex = QRegularExpression(r"[\d{9}\s]*")
+        input_validator = QRegularExpressionValidator(reg_ex, self.account_number)
         self.account_number.setValidator(input_validator)
 
     @classmethod

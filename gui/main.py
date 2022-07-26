@@ -1,8 +1,8 @@
 # import logging
 import os
 from datetime import date
-from PySide2.QtCore import QDate, QTimer
-from PySide2.QtWidgets import QMainWindow, QMessageBox
+from PySide6.QtCore import QDate, QTimer
+from PySide6.QtWidgets import QMainWindow, QMessageBox
 from sqlalchemy import extract
 from sqlalchemy.sql.expression import desc
 from database.models import Bill, User, Contractor, Service, ServiceAssociation

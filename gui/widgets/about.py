@@ -1,6 +1,6 @@
 import os
-from PySide2.QtGui import QPixmap
-from PySide2.QtWidgets import QWidget
+from PySide6.QtGui import QPixmap
+from PySide6.QtWidgets import QWidget
 from gui.designer.about_widget import Ui_Dialog
 
 

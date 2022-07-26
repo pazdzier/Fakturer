@@ -3,7 +3,7 @@ import os
 import logging.config
 import sys
 import locale
-from PySide2.QtWidgets import QApplication
+from PySide6.QtWidgets import QApplication
 from database.models import (
     session_manager,
     engine,
@@ -27,4 +27,4 @@ if __name__ == "__main__":
         w = MainWindow(session)
         w.show()
         logging.shutdown()
-        sys.exit(app.exec_())
+        sys.exit(app.exec())

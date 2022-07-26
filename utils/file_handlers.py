@@ -11,7 +11,7 @@ import os
 import subprocess
 from json.decoder import JSONDecodeError
 from sqlalchemy.orm.query import Query
-from PySide2.QtWidgets import QFileDialog, QMessageBox
+from PySide6.QtWidgets import QFileDialog, QMessageBox
 from utils.constants import STATIC
 
 

@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QWidget, QMessageBox
+from PySide6.QtWidgets import QWidget, QMessageBox
 from database.models import Contractor
 from gui.designer.add_edit_contractor import Ui_Dialog
 from utils.string_validators import zip_code_validator, nip_validator

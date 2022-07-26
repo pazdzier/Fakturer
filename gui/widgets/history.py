@@ -20,7 +20,7 @@
 
 import json
 import os
-from PySide2.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
+from PySide6.QtWidgets import QWidget, QTableWidgetItem, QHeaderView
 from gui.designer.history import Ui_Dialog
 from utils.constants import STATIC
 
